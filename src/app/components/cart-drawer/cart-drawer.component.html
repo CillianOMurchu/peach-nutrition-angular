@@ -8,12 +8,22 @@
   <!-- Header -->
   <div class="drawer__header">
     <h2 class="drawer__title">
-      @if (sent()) { Order Confirmed } @else { Your Cart }
-      @if (cart.totalItems() && !sent()) {
+      @if (sent()) {
+        Order Confirmed
+      } @else if (cart.totalItems() > 0) {
         <span class="drawer__count">{{ cart.totalItems() }}</span>
+        Item{{ cart.totalItems() > 1 ? 's' : '' }}
+      } @else {
+        Your Cart
       }
     </h2>
-    <button class="drawer__close" (click)="cart.close()" aria-label="Close cart">✕</button>
+    <button
+      class="drawer__close"
+      (click)="cart.close()"
+      aria-label="Close cart"
+    >
+      ✕
+    </button>
   </div>
 
   <!-- Empty state -->
@@ -21,7 +31,11 @@
     <div class="drawer__empty">
       <div class="drawer__empty-icon">🛒</div>
       <p>Your cart is empty</p>
-      <button class="btn btn--primary" (click)="cart.close()" routerLink="/shop">
+      <button
+        class="btn btn--primary"
+        (click)="cart.close()"
+        routerLink="/shop"
+      >
         Start Shopping
       </button>
     </div>
@@ -29,17 +43,21 @@
 
   <!-- Items + Footer -->
   @if (!cart.isEmpty() || sent()) {
-
     <!-- Item list (hidden once order is confirmed) -->
     @if (!sent()) {
       <div class="drawer__items">
         @for (item of cart.items(); track item.product.id) {
           <div class="cart-item">
             <div class="cart-item__image-wrap">
-              <img [src]="item.product.images[0].src" [alt]="item.product.images[0].alt" />
+              <img
+                [src]="item.product.images[0].src"
+                [alt]="item.product.images[0].alt"
+              />
             </div>
             <div class="cart-item__info">
-              <span class="badge badge--{{ item.product.brand }} cart-item__brand">
+              <span
+                class="badge badge--{{ item.product.brand }} cart-item__brand"
+              >
                 {{ item.product.brand }}
               </span>
               <p class="cart-item__name">{{ item.product.name }}</p>
@@ -48,22 +66,38 @@
                   <span class="cart-item__price--original">
                     €{{ item.product.price.toFixed(2) }}
                   </span>
-                  €{{ (item.product.price * (1 - item.product.discountPercentage / 100)).toFixed(2) }}
+                  €{{
+                    (
+                      item.product.price *
+                      (1 - item.product.discountPercentage / 100)
+                    ).toFixed(2)
+                  }}
                 } @else {
                   €{{ item.product.price.toFixed(2) }}
                 }
               </p>
               <div class="cart-item__actions">
                 <div class="cart-item__qty">
-                  <button (click)="cart.decrement(item.product.id)" aria-label="Decrease quantity">−</button>
+                  <button
+                    (click)="cart.decrement(item.product.id)"
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
                   <span>{{ item.quantity }}</span>
                   <button
                     (click)="cart.increment(item.product.id)"
                     [disabled]="item.quantity >= item.product.stockQuantity"
                     aria-label="Increase quantity"
-                  >+</button>
+                  >
+                    +
+                  </button>
                 </div>
-                <button class="cart-item__remove" (click)="cart.remove(item.product.id)" aria-label="Remove item">
+                <button
+                  class="cart-item__remove"
+                  (click)="cart.remove(item.product.id)"
+                  aria-label="Remove item"
+                >
                   Remove
                 </button>
               </div>
@@ -75,7 +109,6 @@
 
     <!-- Footer -->
     <div class="drawer__footer">
-
       <!-- ── Success state ── -->
       @if (sent()) {
         <div class="drawer__success">
@@ -85,12 +118,15 @@
             Thank you for your order. We'll be in touch shortly with your
             delivery and payment details.
           </p>
-          <button class="btn btn--primary drawer__checkout" (click)="finishOrder()">
+          <button
+            class="btn btn--primary drawer__checkout"
+            (click)="finishOrder()"
+          >
             Continue Shopping
           </button>
         </div>
 
-      <!-- ── Confirm panel ── -->
+        <!-- ── Confirm panel ── -->
       } @else if (confirmOpen()) {
         <div class="drawer__confirm">
           <button class="drawer__back" (click)="closeConfirm()">← Back</button>
@@ -99,8 +135,14 @@
           <ul class="drawer__confirm-items">
             @for (item of cart.items(); track item.product.id) {
               <li class="drawer__confirm-item">
-                <span class="drawer__confirm-name">{{ item.product.name }}</span>
-                <span class="drawer__confirm-detail">×{{ item.quantity }} — €{{ itemTotal(item).toFixed(2) }}</span>
+                <span class="drawer__confirm-name">{{
+                  item.product.name
+                }}</span>
+                <span class="drawer__confirm-detail"
+                  >×{{ item.quantity }} — €{{
+                    itemTotal(item).toFixed(2)
+                  }}</span
+                >
               </li>
             }
           </ul>
@@ -115,26 +157,35 @@
             options and payment details.
           </p>
 
-          <button class="btn btn--primary drawer__checkout" (click)="confirmOrder()">
+          <button
+            class="btn btn--primary drawer__checkout"
+            (click)="confirmOrder()"
+          >
             Confirm Order
           </button>
         </div>
 
-      <!-- ── Normal footer ── -->
+        <!-- ── Normal footer ── -->
       } @else {
         <div class="drawer__subtotal">
           <span>Subtotal</span>
-          <span class="drawer__subtotal-value">€{{ cart.subtotal().toFixed(2) }}</span>
+          <span class="drawer__subtotal-value"
+            >€{{ cart.subtotal().toFixed(2) }}</span
+          >
         </div>
-        <p class="drawer__shipping">Shipping & payment details provided on confirmation</p>
-        <button class="btn btn--primary drawer__checkout" (click)="openConfirm()">
+        <p class="drawer__shipping">
+          Shipping & payment details provided on confirmation
+        </p>
+        <button
+          class="btn btn--primary drawer__checkout"
+          (click)="openConfirm()"
+        >
           Checkout — €{{ cart.subtotal().toFixed(2) }}
         </button>
         <button class="btn btn--ghost drawer__continue" (click)="cart.close()">
           Continue Shopping
         </button>
       }
-
     </div>
   }
 </aside>
