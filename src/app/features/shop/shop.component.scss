@@ -1,20 +1,24 @@
 .shop {
   padding: var(--spacing-xl) 0 var(--spacing-2xl);
 
+  // ── Header ────────────────────────────────────────────────────
   &__header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
 
-    @media (max-width: 900px) {
-      flex-direction: column;
-      align-items: flex-start;
+    app-search-bar {
+      width: 100%;
+    }
+
+    @media (min-width: 900px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
 
       app-search-bar {
-        width: 100%;
+        width: auto;
       }
     }
   }
@@ -34,16 +38,16 @@
     color: var(--color-text-muted);
   }
 
-  // ── Mobile filter bar ────────────────────────────────────────
+  // ── Mobile filter bar (hidden on desktop) ─────────────────────
   &__mobile-filter-bar {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
 
-    @media (max-width: 900px) {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-md);
+    @media (min-width: 900px) {
+      display: none;
     }
   }
 
@@ -61,6 +65,7 @@
     cursor: pointer;
     transition: var(--transition);
     min-height: 38px;
+    flex-shrink: 0;
 
     &:hover {
       border-color: var(--color-peach);
@@ -90,50 +95,56 @@
   // ── Layout ───────────────────────────────────────────────────
   &__layout {
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: var(--spacing-xl);
+    grid-template-columns: 1fr;
+    gap: 0;
     align-items: start;
 
-    @media (max-width: 900px) {
-      grid-template-columns: 1fr;
-      gap: 0;
+    @media (min-width: 900px) {
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: var(--spacing-xl);
     }
   }
 
   // ── Sidebar ──────────────────────────────────────────────────
   &__sidebar {
-    position: sticky;
-    top: calc(var(--navbar-height) + var(--spacing-lg));
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.3s ease;
+    margin-bottom: 0;
 
-    @media (max-width: 900px) {
-      position: static;
-      display: grid;
-      grid-template-rows: 0fr;
+    &--open {
+      grid-template-rows: 1fr;
+      margin-bottom: var(--spacing-lg);
+    }
+
+    > * {
       overflow: hidden;
-      transition: grid-template-rows 0.3s ease;
-      margin-bottom: 0;
+    }
 
-      &--open {
-        grid-template-rows: 1fr;
-        margin-bottom: var(--spacing-lg);
-      }
-
-      > * {
-        overflow: hidden;
-      }
+    @media (min-width: 900px) {
+      display: block;
+      overflow: visible;
+      position: sticky;
+      top: calc(var(--navbar-height) + var(--spacing-lg));
     }
   }
 
-  // ── Toolbar ──────────────────────────────────────────────────
-  &__toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+  // ── Main content ─────────────────────────────────────────────
+  &__main {
+    min-width: 0;
+  }
 
-    @media (max-width: 900px) {
-      display: none;
+  // ── Toolbar (desktop only) ───────────────────────────────────
+  &__toolbar {
+    display: none;
+
+    @media (min-width: 900px) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
     }
   }
 
@@ -146,12 +157,13 @@
     color: var(--color-text-primary);
     background: var(--color-surface);
     cursor: pointer;
-    // transition: var(--transition);
     appearance: none;
     padding-right: 32px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7570' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
+    min-width: 0;
+    max-width: 180px;
 
     &:focus {
       outline: none;
@@ -167,11 +179,12 @@
   &__grid,
   &__loading {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-lg);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-md);
 
     @media (min-width: 500px) {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--spacing-lg);
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
 
     @media (min-width: 900px) {
