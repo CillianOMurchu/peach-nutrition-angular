@@ -1,0 +1,399 @@
+[
+  {
+    "id": "barebells-banana-dream",
+    "name": "Banana Dream",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 5,
+    "featured": true,
+    "review": { "rating": 5, "count": 327 },
+    "images": [
+      {
+        "src": "/images/products/barebell/banana-dream-open.png",
+        "alt": "Barebells Banana Dream protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/banana-dream-closed.png",
+        "alt": "Barebells Banana Dream protein bar closed"
+      }
+    ],
+    "description": "Escape into the creamy, nostalgic flavor of Barebells Banana Dream — a guilt-free treat packed with protein and pure satisfaction. With its smooth banana taste, rich chocolate coating, and soft, chewy texture, Banana Dream delivers dessert-level indulgence with 20g of protein and no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "soft-bar", "chocolate-coating"]
+  },
+  {
+    "id": "barebells-salty-peanut-caramel",
+    "name": "Salty Peanut Caramel",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 5,
+    "stockQuantity": 20,
+    "featured": false,
+    "review": { "rating": 5, "count": 154 },
+    "images": [
+      {
+        "src": "/images/products/barebell/peanut-caramel-open.png",
+        "alt": "Barebells Salty Peanut Caramel protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/peanut-caramel-closed.png",
+        "alt": "Barebells Salty Peanut Caramel protein bar closed"
+      }
+    ],
+    "description": "The perfect balance of salty peanuts and sweet caramel, wrapped in smooth milk chocolate. Barebells Salty Peanut Caramel delivers 20g of protein with no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "peanut", "caramel"]
+  },
+  {
+    "id": "barebells-salty-peanut",
+    "name": "Salty Peanut",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 15,
+    "featured": false,
+    "review": { "rating": 5, "count": 89 },
+    "images": [
+      {
+        "src": "/images/products/barebell/salty-peanut-open.png",
+        "alt": "Barebells Salty Peanut protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/salty-peanut-closed.png",
+        "alt": "Barebells Salty Peanut protein bar closed"
+      }
+    ],
+    "description": "Crunchy, salty, and perfectly balanced — Barebells Salty Peanut combines roasted peanuts with a rich caramel layer and smooth milk chocolate coating. With 20g of protein and no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "peanut", "crunchy"]
+  },
+  {
+    "id": "barebells-white-salty-peanut",
+    "name": "White Salty Peanut",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 30,
+    "featured": false,
+    "review": { "rating": 5, "count": 212 },
+    "images": [
+      {
+        "src": "/images/products/barebell/white-salty-peanut-open.png",
+        "alt": "Barebells White Salty Peanut protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/white-salty-peanut-closed.png",
+        "alt": "Barebells White Salty Peanut protein bar closed"
+      }
+    ],
+    "description": "A twist on the classic — White Salty Peanut features crunchy roasted peanuts coated in creamy white chocolate. 20g of protein with no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "peanut", "white-chocolate"]
+  },
+  {
+    "id": "barebells-cookies-caramel",
+    "name": "Cookies & Caramel",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 10,
+    "stockQuantity": 12,
+    "featured": false,
+    "review": { "rating": 5, "count": 63 },
+    "images": [
+      {
+        "src": "/images/products/barebell/cookies-caramel-closed.png",
+        "alt": "Barebells Cookies and Caramel protein bar"
+      }
+    ],
+    "description": "A heavenly combination of crunchy cookie pieces and smooth caramel, coated in rich milk chocolate. Barebells Cookies & Caramel delivers 20g of protein with no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "cookies", "caramel"]
+  },
+  {
+    "id": "barebells-lemon-cheesecake",
+    "name": "Lemon Cheesecake",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 8,
+    "featured": true,
+    "review": { "rating": 5, "count": 401 },
+    "images": [
+      {
+        "src": "/images/products/barebell/lemon-cheesecake-closed.png",
+        "alt": "Barebells Lemon Cheesecake protein bar"
+      }
+    ],
+    "description": "Tangy lemon meets creamy cheesecake in this refreshing protein bar. Barebells Lemon Cheesecake offers a zesty twist with 20g of protein and no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "lemon", "cheesecake"]
+  },
+  {
+    "id": "barebells-coco-choco",
+    "name": "Coco Choco",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 0,
+    "featured": false,
+    "review": { "rating": 5, "count": 74 },
+    "images": [
+      {
+        "src": "/images/products/barebell/coco-choco-closed.png",
+        "alt": "Barebells Coco Choco protein bar"
+      }
+    ],
+    "description": "A tropical escape in every bite. Barebells Coco Choco combines rich coconut with smooth milk chocolate for a 20g protein bar with no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "coconut", "chocolate"]
+  },
+  {
+    "id": "barebells-cookies-cream",
+    "name": "Cookies & Cream",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 22,
+    "featured": false,
+    "review": { "rating": 5, "count": 188 },
+    "images": [
+      {
+        "src": "/images/products/barebell/cookies-cream-open.png",
+        "alt": "Barebells Cookies and Cream protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/cookies-cream-closed.png",
+        "alt": "Barebells Cookies and Cream protein bar closed"
+      }
+    ],
+    "description": "The ultimate cookies and cream experience. Crunchy cookie pieces layered in smooth vanilla cream, coated in white chocolate. 20g protein, no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "cookies", "vanilla"]
+  },
+  {
+    "id": "barebells-berry-licorice",
+    "name": "Berry Licorice",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 0,
+    "featured": false,
+    "review": { "rating": 4, "count": 45 },
+    "images": [
+      {
+        "src": "/images/products/barebell/berry-licorice-open.png",
+        "alt": "Barebells Berry Licorice protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/berry-licorice-closed.png",
+        "alt": "Barebells Berry Licorice protein bar closed"
+      }
+    ],
+    "description": "A bold Scandinavian twist — Barebells Berry Licorice layers fruity berry flavour with classic licorice in a soft protein bar. 20g protein, no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "berry", "licorice"]
+  },
+  {
+    "id": "barebells-caramel-choco",
+    "name": "Caramel Choco",
+    "brand": "barebells",
+    "category": "protein-bar",
+    "price": 1.6,
+    "discountPercentage": 0,
+    "stockQuantity": 17,
+    "featured": false,
+    "review": { "rating": 5, "count": 132 },
+    "images": [
+      {
+        "src": "/images/products/barebell/caramel-choco-open.png",
+        "alt": "Barebells Caramel Choco protein bar open"
+      },
+      {
+        "src": "/images/products/barebell/caramel-choco-closed.png",
+        "alt": "Barebells Caramel Choco protein bar closed"
+      }
+    ],
+    "description": "A rich, indulgent combination of smooth caramel and dark chocolate. Barebells Caramel Choco delivers 20g protein with no added sugar.",
+    "tags": ["no-added-sugar", "20g-protein", "caramel", "dark-chocolate"]
+  },
+  {
+    "id": "nocco-juicy-melba",
+    "name": "Juicy Melba",
+    "brand": "nocco",
+    "category": "energy-drink",
+    "price": 2.49,
+    "discountPercentage": 0,
+    "stockQuantity": 48,
+    "featured": true,
+    "review": { "rating": 5, "count": 278 },
+    "images": [
+      {
+        "src": "/images/products/nocco/juicy-melba.png",
+        "alt": "NOCCO Juicy Melba BCAA drink"
+      },
+      {
+        "src": "/images/products/nocco/juicy-melba-2.png",
+        "alt": "NOCCO Juicy Melba BCAA drink angle 2"
+      },
+      {
+        "src": "/images/products/nocco/juicy-melba-3.png",
+        "alt": "NOCCO Juicy Melba BCAA drink angle 3"
+      }
+    ],
+    "description": "Inspired by the classic peach melba dessert, NOCCO Juicy Melba delivers a peachy, fruity flavor explosion. Zero sugar, loaded with BCAAs, vitamins, and 180mg of caffeine.",
+    "tags": ["bcaa", "sugar-free", "180mg-caffeine", "carbonated", "vitamins"]
+  },
+  {
+    "id": "nocco-grand-sour",
+    "name": "Grand Sour",
+    "brand": "nocco",
+    "category": "energy-drink",
+    "price": 2.49,
+    "discountPercentage": 0,
+    "stockQuantity": 14,
+    "featured": false,
+    "review": { "rating": 5, "count": 97 },
+    "images": [
+      {
+        "src": "/images/products/nocco/grand-sour.png",
+        "alt": "NOCCO Focus Grand Sour BCAA drink"
+      }
+    ],
+    "description": "For those who love a tangy twist. NOCCO Focus Grand Sour delivers a bold, sour flavor experience with zero sugar, BCAAs, vitamins, and 180mg of caffeine for enhanced focus.",
+    "tags": ["bcaa", "sugar-free", "180mg-caffeine", "carbonated", "focus"]
+  },
+  {
+    "id": "nocco-miami-strawberry",
+    "name": "Miami Strawberry",
+    "brand": "nocco",
+    "category": "energy-drink",
+    "price": 2.49,
+    "discountPercentage": 0,
+    "stockQuantity": 6,
+    "featured": true,
+    "review": { "rating": 5, "count": 56 },
+    "images": [
+      {
+        "src": "/images/products/nocco/miami-strawberry.png",
+        "alt": "NOCCO Miami Strawberry BCAA drink"
+      }
+    ],
+    "description": "A refreshing burst of sweet strawberry flavor with a Miami twist. NOCCO Miami Strawberry is a BCAA drink with zero sugar, packed with vitamins and 180mg of caffeine.",
+    "tags": ["bcaa", "sugar-free", "180mg-caffeine", "carbonated", "strawberry"]
+  },
+  {
+    "id": "iogenix-chokokrac",
+    "name": "Chokokrac",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 34.99,
+    "discountPercentage": 10,
+    "stockQuantity": 15,
+    "featured": false,
+    "review": { "rating": 5, "count": 183 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/chocokrak.png",
+        "alt": "iOGenix Whey 80 Pro Chokokrac 1kg"
+      }
+    ],
+    "description": "High-quality whey protein concentrate with 80% protein content. Chokokrac flavor delivers rich chocolate taste with a satisfying crunch. 1kg pack for serious athletes.",
+    "tags": ["whey-80", "high-protein", "1kg", "chocolate"]
+  },
+  {
+    "id": "iogenix-black-cookies-cheesecake",
+    "name": "Black Cookies Cheesecake",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 49.99,
+    "discountPercentage": 12,
+    "stockQuantity": 7,
+    "featured": false,
+    "review": { "rating": 5, "count": 98 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/black-cookies.png",
+        "alt": "iOGenix Whey Sublime Black Cookies Cheesecake 1.5kg"
+      }
+    ],
+    "description": "Premium whey blend with enhanced taste and mixability. Black Cookies Cheesecake flavor in a generous 1.5kg pack. Sublime by name, sublime by nature.",
+    "tags": ["whey-sublime", "high-protein", "1.5kg", "cookies"]
+  },
+  {
+    "id": "iogenix-choco-milk",
+    "name": "Choco Milk Crunch",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 49.99,
+    "discountPercentage": 0,
+    "stockQuantity": 11,
+    "featured": true,
+    "review": { "rating": 5, "count": 111 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/choc-milk-crunch.png",
+        "alt": "iOGenix Whey Sublime Choco Milk Crunch 1.5kg"
+      }
+    ],
+    "description": "Like drinking a crunchy chocolate bar. Premium whey protein blend with superior taste. 1.5kg of pure chocolate milk crunch goodness.",
+    "tags": ["whey-sublime", "high-protein", "1.5kg", "chocolate"]
+  },
+  {
+    "id": "iogenix-cookie-dough",
+    "name": "Cookie Dough",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 49.99,
+    "discountPercentage": 8,
+    "stockQuantity": 9,
+    "featured": false,
+    "review": { "rating": 4, "count": 111 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/cookie-dough.png",
+        "alt": "iOGenix Whey Sublime Cookie Dough 1.5kg"
+      }
+    ],
+    "description": "Raw cookie dough flavor that's irresistibly good. Premium whey blend with chunks of flavor. 1.5kg for serious gains with serious taste.",
+    "tags": ["whey-sublime", "high-protein", "1.5kg", "cookie-dough"]
+  },
+  {
+    "id": "iogenix-jumanjix",
+    "name": "Choco Jumanjix",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 49.99,
+    "discountPercentage": 0,
+    "stockQuantity": 6,
+    "featured": false,
+    "review": { "rating": 5, "count": 11 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/jumanjix.png",
+        "alt": "iOGenix Whey Sublime Choco Jumanjix 1.5kg"
+      }
+    ],
+    "description": "Adventure awaits with Choco Jumanjix — a wild chocolate flavor experience. Premium whey protein blend in a 1.5kg pack for jungle-sized gains.",
+    "tags": ["whey-sublime", "high-protein", "1.5kg", "chocolate"]
+  },
+  {
+    "id": "iogenix-milk-choc-boom",
+    "name": "Milk Choc Boom",
+    "brand": "iogenix",
+    "category": "protein-powder",
+    "price": 49.99,
+    "discountPercentage": 10,
+    "stockQuantity": 13,
+    "featured": true,
+    "review": { "rating": 5, "count": 222 },
+    "images": [
+      {
+        "src": "/images/products/iogenix/choc-boom.png",
+        "alt": "iOGenix Whey Sublime Milk Choc Boom 1.5kg"
+      }
+    ],
+    "description": "Explosive milk chocolate flavor that hits different. Premium whey protein blend with unmatched taste. 1.5kg of boom for your gains.",
+    "tags": ["whey-sublime", "high-protein", "1.5kg", "chocolate"]
+  }
+]

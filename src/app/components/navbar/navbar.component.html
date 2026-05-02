@@ -1,0 +1,73 @@
+<nav class="navbar" [class.navbar--scrolled]="scrolled()">
+  <div class="navbar__inner container">
+    <!-- Logo -->
+    <a routerLink="/" class="navbar__logo" (click)="closeMenu()">
+      <img
+        src="images/logos/logo-peach-nutrition.png"
+        alt="Peach Nutrition"
+        height="36"
+      />
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="navbar__links">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/shop" routerLinkActive="active"> Shop </a>
+      </li>
+    </ul>
+
+    <!-- Right side -->
+    <div class="navbar__actions">
+      <!-- Cart button -->
+      <button class="navbar__cart" (click)="cart.open()" aria-label="Open cart">
+        <img src="cart-icon.svg" alt="" width="60" height="60" />
+        @if (cart.totalItems()) {
+          <span class="navbar__cart-badge">{{ cart.totalItems() }}</span>
+        }
+      </button>
+      <a routerLink="/shop" class="btn btn--primary navbar__cta"> Shop Now </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="navbar__hamburger"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle menu"
+      >
+        <span [class.open]="menuOpen()"></span>
+        <span [class.open]="menuOpen()"></span>
+        <span [class.open]="menuOpen()"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="navbar__mobile" [class.navbar__mobile--open]="menuOpen()">
+    <ul>
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/shop" routerLinkActive="active" (click)="closeMenu()">
+          Shop
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

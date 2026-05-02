@@ -1,0 +1,282 @@
+@if (product(); as p) {
+  <div class="product-page">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a routerLink="/">Home</a>
+        <span>/</span>
+        <a routerLink="/shop">Shop</a>
+        <span>/</span>
+        <span>{{ p.name }}</span>
+      </nav>
+
+      <div class="product-page__layout">
+        <!-- ── Left: Image gallery ── -->
+        <div class="gallery">
+          <!-- Thumbnails -->
+          @if (p.images.length > 1) {
+            <div class="gallery__thumbs">
+              @for (img of p.images; track $index) {
+                <button
+                  class="gallery__thumb"
+                  [class.gallery__thumb--active]="activeIndex() === $index"
+                  (click)="setActive($index)"
+                >
+                  <img [src]="img.src" [alt]="img.alt" loading="lazy" />
+                </button>
+              }
+            </div>
+          }
+
+          <!-- Main image -->
+          <div class="gallery__main">
+            <div class="gallery__image-wrap" (click)="openLightbox()">
+              <!-- Badges -->
+              <div class="gallery__badges">
+                @if (p.discountPercentage) {
+                  <span class="badge badge--discount"
+                    >-{{ p.discountPercentage }}%</span
+                  >
+                }
+                @if (isLowStock()) {
+                  <span class="badge badge--low-stock">
+                    Only {{ p.stockQuantity }} left
+                  </span>
+                }
+                @if (isOutOfStock()) {
+                  <span class="badge badge--out-of-stock">Out of stock</span>
+                }
+              </div>
+
+              <img
+                class="gallery__image"
+                [src]="p.images[activeIndex()].src"
+                [alt]="p.images[activeIndex()].alt"
+              />
+
+              <!-- Prev / Next arrows (only if multiple images) -->
+              @if (p.images.length > 1) {
+                <button
+                  class="gallery__arrow gallery__arrow--prev"
+                  (click)="
+                    $event.stopPropagation();
+                    setActive(
+                      (activeIndex() - 1 + p.images.length) % p.images.length
+                    )
+                  "
+                  aria-label="Previous image"
+                >
+                  ‹
+                </button>
+                <button
+                  class="gallery__arrow gallery__arrow--next"
+                  (click)="
+                    $event.stopPropagation();
+                    setActive((activeIndex() + 1) % p.images.length)
+                  "
+                  aria-label="Next image"
+                >
+                  ›
+                </button>
+              }
+            </div>
+
+            <!-- Dot indicators -->
+            @if (p.images.length > 1) {
+              <div class="gallery__dots">
+                @for (img of p.images; track $index) {
+                  <button
+                    class="gallery__dot"
+                    [class.gallery__dot--active]="activeIndex() === $index"
+                    (click)="setActive($index)"
+                    [attr.aria-label]="'View image ' + ($index + 1)"
+                  ></button>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- ── Right: Product info ── -->
+        <div class="product-info">
+          <!-- Brand + category -->
+          <div class="product-info__meta">
+            <span class="badge badge--{{ p.brand }}">{{ p.brand }}</span>
+            <span class="product-info__category">{{ p.category }}</span>
+          </div>
+
+          <h1 class="product-info__name">{{ p.name }}</h1>
+
+          <!-- Stars -->
+          <div class="product-info__stars">
+            @for (filled of stars(); track $index) {
+              <span class="star" [class.star--filled]="filled">★</span>
+            }
+            <span class="product-info__review-count">
+              {{ p.review.rating }}.0 · {{ p.review.count }} reviews
+            </span>
+          </div>
+
+          <!-- Price -->
+          <div class="product-info__pricing">
+            @if (discountedPrice()) {
+              <span class="product-info__price product-info__price--original">
+                €{{ p.price.toFixed(2) }}
+              </span>
+              <span class="product-info__price product-info__price--discounted">
+                €{{ discountedPrice()!.toFixed(2) }}
+              </span>
+            } @else {
+              <span class="product-info__price">€{{ p.price.toFixed(2) }}</span>
+            }
+          </div>
+
+          <!-- Description -->
+          <p class="product-info__description">{{ p.description }}</p>
+
+          <!-- Tags -->
+          <div class="product-info__tags">
+            @for (tag of p.tags; track tag) {
+              <span class="card__tag">{{ tag }}</span>
+            }
+          </div>
+
+          <!-- Quantity + CTA -->
+          @if (!isOutOfStock()) {
+            <div class="product-info__actions">
+              <div class="quantity">
+                <button
+                  class="quantity__btn"
+                  (click)="decrementQty()"
+                  [disabled]="quantity() === 1"
+                >
+                  −
+                </button>
+                <span class="quantity__value">{{ quantity() }}</span>
+                <button
+                  class="quantity__btn"
+                  (click)="incrementQty()"
+                  [disabled]="quantity() === product()!.stockQuantity"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                class="btn btn--primary product-info__add"
+                (click)="cart.add(product()!, quantity())"
+              >
+                > Add to cart — €{{ (p.price * quantity()).toFixed(2) }}
+              </button>
+            </div>
+          } @else {
+            <button class="btn btn--outline" disabled>Out of stock</button>
+          }
+
+          <!-- Stock notice -->
+          @if (isLowStock()) {
+            <p class="product-info__stock-warning">
+              ⚡ Only {{ p.stockQuantity }} left in stock
+            </p>
+          }
+        </div>
+      </div>
+
+      <!-- ── Related products ── -->
+      @if (relatedProducts().length) {
+        <section class="related">
+          <h2 class="related__heading">More from {{ p.brand }}</h2>
+          <div class="related__grid">
+            @for (related of relatedProducts(); track related.id) {
+              <div
+                class="related__card"
+                [routerLink]="['/product', related.id]"
+              >
+                <div class="related__image-wrap">
+                  <img
+                    [src]="related.images[0].src"
+                    [alt]="related.images[0].alt"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="related__name">{{ related.name }}</p>
+                <p class="related__price">€{{ related.price.toFixed(2) }}</p>
+              </div>
+            }
+          </div>
+        </section>
+      }
+    </div>
+
+    <!-- Lightbox -->
+    @if (lightboxOpen()) {
+      <div class="lightbox" (click)="closeLightbox()">
+        <button
+          class="lightbox__close"
+          (click)="closeLightbox()"
+          aria-label="Close"
+        >
+          ✕
+        </button>
+
+        <!-- Prev arrow -->
+        @if (product()!.images.length > 1) {
+          <button
+            class="lightbox__arrow lightbox__arrow--prev"
+            (click)="
+              $event.stopPropagation();
+              setLightboxIndex(
+                (lightboxIndex() - 1 + product()!.images.length) %
+                  product()!.images.length
+              )
+            "
+            aria-label="Previous"
+          >
+            ‹
+          </button>
+        }
+
+        <div class="lightbox__image-wrap" (click)="$event.stopPropagation()">
+          <img
+            [src]="product()!.images[lightboxIndex()].src"
+            [alt]="product()!.images[lightboxIndex()].alt"
+            class="lightbox__image"
+          />
+        </div>
+
+        <!-- Next arrow -->
+        @if (product()!.images.length > 1) {
+          <button
+            class="lightbox__arrow lightbox__arrow--next"
+            (click)="
+              $event.stopPropagation();
+              setLightboxIndex((lightboxIndex() + 1) % product()!.images.length)
+            "
+            aria-label="Next"
+          >
+            ›
+          </button>
+        }
+
+        <!-- Dot indicators -->
+        @if (product()!.images.length > 1) {
+          <div class="lightbox__dots">
+            @for (img of product()!.images; track $index) {
+              <button
+                class="gallery__dot"
+                [class.gallery__dot--active]="lightboxIndex() === $index"
+                (click)="$event.stopPropagation(); setLightboxIndex($index)"
+              ></button>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+} @else if (!productService.loading()) {
+  <div class="container" style="padding: 4rem 0; text-align: center">
+    <p>Product not found.</p>
+    <a routerLink="/shop" class="btn btn--outline" style="margin-top: 1rem">
+      Back to shop
+    </a>
+  </div>
+}

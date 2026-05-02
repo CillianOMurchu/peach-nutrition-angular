@@ -1,0 +1,206 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--navbar-height);
+  background: var(--color-bg);
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+
+  &--scrolled {
+    background: rgba(250, 248, 245, 0.6);
+    backdrop-filter: blur(12px);
+    border-bottom-color: var(--color-border);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  &__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+
+    a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: var(--transition);
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--color-peach);
+        border-radius: var(--radius-full);
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+      }
+
+      &:hover,
+      &.active {
+        color: var(--color-text-primary);
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  &__cta {
+    @media (max-width: 640px) {
+      display: none;
+    }
+  }
+
+  // ── Hamburger ──────────────────────────────────────────────
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+
+    &:hover {
+      background: var(--color-peach-light);
+    }
+
+    span {
+      display: block;
+      height: 2px;
+      background: var(--color-text-primary);
+      border-radius: var(--radius-full);
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+
+      &:nth-child(1).open {
+        transform: translateY(7px) rotate(45deg);
+      }
+      &:nth-child(2).open {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      &:nth-child(3).open {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      display: flex;
+    }
+  }
+
+  &__cart {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    color: var(--color-text-primary);
+
+    &:hover {
+      background: var(--color-peach-light);
+    }
+
+    img {
+      opacity: 0.75;
+    }
+  }
+
+  &__cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--color-peach);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+  }
+
+  // ── Mobile menu ────────────────────────────────────────────
+  &__mobile {
+    display: none;
+    overflow: hidden;
+    max-height: 0;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    transition: max-height 0.3s ease;
+
+    &--open {
+      max-height: 200px;
+    }
+
+    ul {
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-md);
+    }
+
+    a {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      transition: var(--transition);
+
+      &:hover,
+      &.active {
+        color: var(--color-peach);
+      }
+    }
+
+    @media (max-width: 640px) {
+      display: block;
+    }
+  }
+}

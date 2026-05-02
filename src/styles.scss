@@ -1,0 +1,212 @@
+// ── Google Fonts ───────────────────────────────────────────────
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap");
+
+// ── CSS Custom Properties ──────────────────────────────────────
+:root {
+  // Brand colours
+  --color-peach: #f4845f;
+  --color-peach-light: #fdf0eb;
+  --color-peach-dark: #d9623d;
+
+  // Neutrals
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-border: #eeebe6;
+  --color-text-primary: #1a1a1a;
+  --color-text-muted: #7a7570;
+  --color-text-light: #b0aba5;
+
+  // Brands
+  --color-barebells: #2d7a3a;
+  --color-nocco: #0099cc;
+  --color-iogenix: #1a2b6b;
+
+  // Feedback
+  --color-success: #2d7a3a;
+  --color-discount: #e03e3e;
+
+  // Typography
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "DM Serif Display", serif;
+
+  // Spacing
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 64px;
+
+  // Layout
+  --max-width: 1280px;
+  --navbar-height: 64px;
+
+  // Radius
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  // Shadows
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  // Transitions
+  --transition: all 0.2s ease;
+}
+
+// ── Reset ──────────────────────────────────────────────────────
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+// ── Typography ─────────────────────────────────────────────────
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+  border: none;
+  background: none;
+}
+
+ul {
+  list-style: none;
+}
+
+// ── Utility classes ────────────────────────────────────────────
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 12px var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+  white-space: nowrap;
+
+  &--primary {
+    background: var(--color-peach);
+    color: white;
+    &:hover {
+      background: var(--color-peach-dark);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--outline {
+    border: 1.5px solid var(--color-border);
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    &:hover {
+      border-color: var(--color-peach);
+      color: var(--color-peach);
+    }
+  }
+
+  &--ghost {
+    color: var(--color-text-muted);
+    &:hover {
+      color: var(--color-peach);
+      background: var(--color-peach-light);
+    }
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  &--barebells {
+    background: #e8f5eb;
+    color: var(--color-barebells);
+  }
+  &--nocco {
+    background: #e0f4ff;
+    color: var(--color-nocco);
+  }
+  &--iogenix {
+    background: #e8eafa;
+    color: var(--color-iogenix);
+  }
+  &--discount {
+    background: #fdeaea;
+    color: var(--color-discount);
+  }
+  &--out-of-stock {
+    background: var(--color-border);
+    color: var(--color-text-muted);
+  }
+}
+
+// ── Page layout ────────────────────────────────────────────────
+.page {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+// ── Scroll reveal ──────────────────────────────────────────────
+[data-animate],
+.slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

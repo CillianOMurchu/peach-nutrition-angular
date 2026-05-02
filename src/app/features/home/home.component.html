@@ -1,0 +1,86 @@
+<div class="home">
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero__bg">
+      <img src="/landing-page.png" alt="Peach Nutrition" class="hero__img" />
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content container">
+      <p class="hero__eyebrow">Premium Sports Nutrition</p>
+      <h1 class="hero__title">Fuel Your<br />Performance</h1>
+      <p class="hero__sub">
+        Hand-picked protein, drinks and bars from the world's best nutrition
+        brands.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/shop" class="btn btn--primary hero__btn">
+          Shop All Products
+        </a>
+        <a routerLink="/shop" class="btn hero__btn-ghost"> Explore Brands ↓ </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero__scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ── Stats bar ── -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        @for (stat of stats; track stat.label) {
+          <div class="stats__item" #animateIn>
+            <span class="stats__value">{{ stat.value }}</span>
+            <span class="stats__label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured products ── -->
+  <section class="featured">
+    <div class="container">
+      <div class="featured__header" #animateIn>
+        <h2>Featured Products</h2>
+        <a routerLink="/shop" class="btn btn--outline">View all</a>
+      </div>
+
+      @if (productService.loading()) {
+        <div class="featured__grid">
+          @for (n of [1, 2, 3, 4]; track n) {
+            <div
+              class="skeleton"
+              style="height: 340px; border-radius: var(--radius-lg)"
+            ></div>
+          }
+        </div>
+      } @else {
+        <div class="featured__grid">
+          @for (product of featured(); track product.id; let i = $index) {
+            <div
+              #animateIn
+              class="slide-up"
+              [style.transition-delay]="i * 80 + 'ms'"
+            >
+              <app-product-card [product]="product" />
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- ── Bottom CTA ── -->
+  <section class="cta" #animateIn>
+    <div class="cta__inner container">
+      <h2 class="cta__title">Ready to level up?</h2>
+      <p class="cta__sub">
+        Free delivery on orders over €40. Always fresh stock.
+      </p>
+      <a routerLink="/shop" class="btn btn--primary cta__btn">Shop Now</a>
+    </div>
+  </section>
+</div>

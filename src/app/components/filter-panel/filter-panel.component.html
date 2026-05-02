@@ -1,0 +1,59 @@
+<div class="filters">
+
+  <div class="filters__header">
+    <h3>Filters</h3>
+    @if (hasActiveFilters()) {
+      <button class="filters__clear btn btn--ghost" (click)="cleared.emit()">
+        Clear
+      </button>
+    }
+  </div>
+
+  <!-- Brands -->
+  <div class="filters__group">
+    <h4 class="filters__group-label">Brand</h4>
+    <div class="filters__options">
+      @for (brand of brands; track brand.value) {
+        <button
+          class="filters__chip"
+          [class.filters__chip--active]="isBrandActive(brand.value)"
+          [class.filters__chip--brand]="isBrandActive(brand.value)"
+          [attr.data-brand]="brand.value"
+          (click)="brandToggled.emit(brand.value)">
+          {{ brand.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="filters__group">
+    <h4 class="filters__group-label">Category</h4>
+    <div class="filters__options">
+      @for (cat of categories; track cat.value) {
+        <button
+          class="filters__chip"
+          [class.filters__chip--active]="isCategoryActive(cat.value)"
+          (click)="categoryToggled.emit(cat.value)">
+          {{ cat.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- In stock -->
+  <div class="filters__group">
+    <h4 class="filters__group-label">Availability</h4>
+    <label class="filters__toggle">
+      <input
+        type="checkbox"
+        [checked]="filters().inStockOnly"
+        (change)="inStockToggled.emit()" />
+      <span class="filters__toggle-track">
+        <span class="filters__toggle-thumb"></span>
+      </span>
+      In stock only
+    </label>
+  </div>
+
+</div>

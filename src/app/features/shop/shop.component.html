@@ -1,0 +1,112 @@
+<section class="shop">
+  <div class="container">
+    <!-- Header -->
+    <div class="shop__header">
+      <div class="shop__heading">
+        <h1>All Products</h1>
+        @if (!loading()) {
+          <span class="shop__count">{{ totalResults() }} products</span>
+        }
+      </div>
+      <app-search-bar
+        [value]="filters().search"
+        (searched)="onSearch($event)"
+      />
+    </div>
+
+    <!-- Mobile filter toggle (hidden on desktop) -->
+    <div class="shop__mobile-filter-bar">
+      <button class="shop__mobile-filter-toggle" (click)="toggleSidebar()">
+        @if (sidebarOpen()) {
+          <span
+            class="shop__mobile-filter-toggle-icon"
+            aria-label="Close filters"
+            >✕</span
+          >
+        } @else {
+          <span>Filters</span>
+          @if (hasFilters()) {
+            <span class="shop__mobile-filter-badge"></span>
+          }
+        }
+      </button>
+      <select
+        class="shop__sort"
+        [value]="filters().sortBy"
+        (change)="onSortChange($event)"
+      >
+        @for (opt of sortOptions; track opt.value) {
+          <option [value]="opt.value">{{ opt.label }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="shop__layout">
+      <!-- Sidebar - always visible on desktop, collapsible on mobile -->
+      <aside class="shop__sidebar" [class.shop__sidebar--open]="sidebarOpen()">
+        <app-filter-panel
+          [filters]="filters()"
+          (brandToggled)="onToggleBrand($event)"
+          (categoryToggled)="onToggleCategory($event)"
+          (inStockToggled)="onToggleInStock()"
+          (cleared)="onClearFilters()"
+        />
+      </aside>
+
+      <!-- Main content -->
+      <div class="shop__main">
+        <div class="shop__toolbar">
+          @if (hasFilters()) {
+            <button
+              class="btn btn--ghost shop__clear"
+              (click)="onClearFilters()"
+            >
+              ✕ Clear filters
+            </button>
+          }
+          <select
+            class="shop__sort"
+            [value]="filters().sortBy"
+            (change)="onSortChange($event)"
+          >
+            @for (opt of sortOptions; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        </div>
+
+        @if (loading()) {
+          <div class="shop__loading">
+            @for (n of [1, 2, 3, 4, 5, 6]; track n) {
+              <div class="skeleton"></div>
+            }
+          </div>
+        }
+
+        @if (error()) {
+          <div class="shop__error">
+            <p>{{ error() }}</p>
+            <button class="btn btn--outline">Try again</button>
+          </div>
+        }
+
+        @if (!loading() && !error()) {
+          @if (products().length) {
+            <div class="shop__grid">
+              @for (product of products(); track product.id) {
+                <app-product-card [product]="product" />
+              }
+            </div>
+          } @else {
+            <div class="shop__empty">
+              <p>No products match your search.</p>
+              <button class="btn btn--outline" (click)="onClearFilters()">
+                Clear filters
+              </button>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</section>
