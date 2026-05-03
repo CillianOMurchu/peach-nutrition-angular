@@ -1,0 +1,73 @@
+<footer class="footer">
+  <div class="container">
+
+    <!-- Top row -->
+    <div class="footer__top">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <span class="footer__logo">Peach Nutrition</span>
+        <p class="footer__tagline">Premium sports nutrition, delivered.</p>
+        <address class="footer__address">
+          Peach Nutrition Ltd<br />
+          14 Wellness Way, Dublin 2<br />
+          Ireland<br />
+          <a href="mailto:hello@peachnutrition.ie">hello&#64;peachnutrition.ie</a><br />
+          <a href="tel:+35311234567">+353 1 123 4567</a>
+        </address>
+      </div>
+
+      <!-- Quick links -->
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <h3 class="footer__nav-heading">Shop</h3>
+        <ul>
+          <li><a routerLink="/shop">All Products</a></li>
+          <li><a routerLink="/shop">Protein Bars</a></li>
+          <li><a routerLink="/shop">Energy Drinks</a></li>
+          <li><a routerLink="/shop">Supplements</a></li>
+        </ul>
+      </nav>
+
+      <!-- Policies -->
+      <nav class="footer__nav" aria-label="Policy links">
+        <h3 class="footer__nav-heading">Information</h3>
+        <ul>
+          <li><a routerLink="/privacy">Privacy Policy</a></li>
+          <li><a routerLink="/returns">Returns &amp; Refunds</a></li>
+          <li><a routerLink="/shipping">Shipping Policy</a></li>
+          <li><a routerLink="/terms">Terms &amp; Conditions</a></li>
+        </ul>
+      </nav>
+
+      <!-- Payment methods -->
+      <div class="footer__payments-col">
+        <h3 class="footer__nav-heading">Accepted Payments</h3>
+        <div class="footer__payment-icons">
+          @for (method of paymentMethods; track method.alt) {
+            <img
+              [src]="method.src"
+              [alt]="method.alt"
+              class="footer__payment-icon"
+              loading="lazy"
+            />
+          }
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="footer__divider"></div>
+
+    <!-- Bottom row -->
+    <div class="footer__bottom">
+
+      <p class="footer__legal">
+        &copy; {{ year }} Peach Nutrition Ltd. Reg. No. 123456.
+        All rights reserved.
+      </p>
+
+    </div>
+
+  </div>
+</footer>

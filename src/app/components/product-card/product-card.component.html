@@ -72,7 +72,8 @@
       <button
         class="card__add-btn"
         [disabled]="isOutOfStock()"
-        (click)="$event.stopPropagation()"
+        (click)="$event.stopPropagation(); cart.add(product())"
+        aria-label="Add to cart"
       >
         +
       </button>

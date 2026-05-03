@@ -21,7 +21,7 @@ import { FilterState, ProductService } from '@core/services/product.service';
 export class ShopComponent {
   private productService = inject(ProductService);
 
-  sidebarOpen = signal(true);
+  sidebarOpen = signal(false);
 
   // exposed to template
   products = this.productService.filteredProducts;

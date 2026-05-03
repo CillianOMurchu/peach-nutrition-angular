@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '@core/services/cart.service';
 import { Product } from '@core/models/product.model';
 
 @Component({
@@ -12,6 +13,7 @@ import { Product } from '@core/models/product.model';
 })
 export class ProductCardComponent {
   product = input.required<Product>();
+  cart = inject(CartService);
 
   discountedPrice = computed(() => {
     const p = this.product();
