@@ -92,7 +92,6 @@ describe('CartDrawerComponent', () => {
 
   describe('checkout()', () => {
     let fetchSpy: jasmine.Spy;
-    let alertSpy: jasmine.Spy;
     let navigateSpy: jasmine.Spy;
 
     const stripeCheckoutUrl = 'https://checkout.stripe.com/pay/test_session';
@@ -104,7 +103,6 @@ describe('CartDrawerComponent', () => {
       // Spy on the component method so tests don't actually navigate
       navigateSpy = spyOn(component, 'navigateTo');
       fetchSpy = spyOn(window, 'fetch');
-      alertSpy = spyOn(window, 'alert');
     });
 
     it('calls the backend endpoint with the correct URL', async () => {
@@ -146,16 +144,23 @@ describe('CartDrawerComponent', () => {
       expect(navigateSpy).toHaveBeenCalledOnceWith(stripeCheckoutUrl);
     });
 
-    it('shows an alert on a non-ok HTTP response', async () => {
+    it('sets checkoutError on a non-ok HTTP response', async () => {
       fetchSpy.and.resolveTo(new Response('{}', { status: 500 }));
       await component.checkout();
-      expect(alertSpy).toHaveBeenCalledWith('Something went wrong. Please try again.');
+      expect(component.checkoutError()).toBe('Something went wrong. Please try again.');
     });
 
-    it('shows an alert on a network failure', async () => {
+    it('sets checkoutError on a network failure', async () => {
       fetchSpy.and.rejectWith(new Error('Network error'));
       await component.checkout();
-      expect(alertSpy).toHaveBeenCalledWith('Something went wrong. Please try again.');
+      expect(component.checkoutError()).toBe('Something went wrong. Please try again.');
+    });
+
+    it('clears checkoutError at the start of a new attempt', async () => {
+      component.checkoutError.set('Previous error');
+      fetchSpy.and.resolveTo(okResponse());
+      await component.checkout();
+      expect(component.checkoutError()).toBe('');
     });
 
     it('clears checkoutLoading after a successful checkout', async () => {

@@ -37,6 +37,16 @@ export const routes: Routes = [
       import('./features/legal/terms/terms.component').then(m => m.TermsComponent)
   },
   {
+    path: 'order-cancelled',
+    loadComponent: () =>
+      import('./features/order-cancelled/order-cancelled.component').then(m => m.OrderCancelledComponent)
+  },
+  {
+    path: 'order-success',
+    loadComponent: () =>
+      import('./features/order-success/order-success.component').then(m => m.OrderSuccessComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

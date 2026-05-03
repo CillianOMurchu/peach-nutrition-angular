@@ -16,6 +16,7 @@ export class CartDrawerComponent {
 
   confirmOpen = signal(false);
   checkoutLoading = signal(false);
+  checkoutError = signal('');
 
   openConfirm() {
     this.confirmOpen.set(true);
@@ -39,6 +40,7 @@ export class CartDrawerComponent {
   async checkout() {
     if (this.checkoutLoading()) return;
     this.checkoutLoading.set(true);
+    this.checkoutError.set('');
 
     try {
       const items = this.cart.items().map((item) => ({
@@ -63,7 +65,7 @@ export class CartDrawerComponent {
       this.navigateTo(url);
     } catch (error) {
       console.error('Checkout error:', error);
-      alert('Something went wrong. Please try again.');
+      this.checkoutError.set('Something went wrong. Please try again.');
     } finally {
       this.checkoutLoading.set(false);
     }

@@ -133,6 +133,10 @@
             <span>€{{ cart.subtotal().toFixed(2) }}</span>
           </div>
 
+          @if (checkoutError()) {
+            <p class="drawer__confirm-error">{{ checkoutError() }}</p>
+          }
+
           <button
             class="btn btn--primary drawer__checkout"
             (click)="checkout()"
