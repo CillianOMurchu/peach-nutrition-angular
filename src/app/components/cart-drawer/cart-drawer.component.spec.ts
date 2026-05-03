@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { CartDrawerComponent } from './cart-drawer.component';
 import { CartService, CartItem } from '@core/services/cart.service';
 import { Product } from '@core/models/product.model';
-import { environment } from '@environments/environment';
+import { environment } from '../../../environments/environment';
 
 const BASE_PRODUCT: Product = {
   id: 'prod-1',

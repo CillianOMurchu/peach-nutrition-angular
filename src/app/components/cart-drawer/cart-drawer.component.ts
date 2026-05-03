@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartItem, CartService } from '@core/services/cart.service';
-import { environment } from '@environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cart-drawer',
