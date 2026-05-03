@@ -1,5 +1,5 @@
 {
-  "buildCommand": "ng build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist/peach-nutrition/browser",
   "installCommand": "npm install",
   "framework": null
