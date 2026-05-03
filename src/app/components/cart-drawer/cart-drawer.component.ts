@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartItem, CartService } from '@core/services/cart.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-cart-drawer',
@@ -14,11 +15,10 @@ export class CartDrawerComponent {
   cart = inject(CartService);
 
   confirmOpen = signal(false);
-  sent = signal(false);
+  checkoutLoading = signal(false);
 
   openConfirm() {
     this.confirmOpen.set(true);
-    this.sent.set(false);
   }
 
   closeConfirm() {
@@ -32,14 +32,40 @@ export class CartDrawerComponent {
     return price * item.quantity;
   }
 
-  confirmOrder() {
-    this.cart.clear();
-    this.sent.set(true);
+  navigateTo(url: string) {
+    window.location.assign(url);
   }
 
-  finishOrder() {
-    this.sent.set(false);
-    this.confirmOpen.set(false);
-    this.cart.close();
+  async checkout() {
+    if (this.checkoutLoading()) return;
+    this.checkoutLoading.set(true);
+
+    try {
+      const items = this.cart.items().map((item) => ({
+        name: item.product.name,
+        price: item.product.discountPercentage
+          ? item.product.price * (1 - item.product.discountPercentage / 100)
+          : item.product.price,
+        quantity: item.quantity,
+      }));
+
+      const response = await fetch(`${environment.backendUrl}/create-checkout-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create checkout session');
+      }
+
+      const { url } = await response.json();
+      this.navigateTo(url);
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      this.checkoutLoading.set(false);
+    }
   }
 }

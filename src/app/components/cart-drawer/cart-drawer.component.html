@@ -8,9 +8,7 @@
   <!-- Header -->
   <div class="drawer__header">
     <h2 class="drawer__title">
-      @if (sent()) {
-        Order Confirmed
-      } @else if (cart.totalItems() > 0) {
+      @if (cart.totalItems() > 0) {
         <span class="drawer__count">{{ cart.totalItems() }}</span>
         Item{{ cart.totalItems() > 1 ? 's' : '' }}
       } @else {
@@ -27,7 +25,7 @@
   </div>
 
   <!-- Empty state -->
-  @if (cart.isEmpty() && !sent()) {
+  @if (cart.isEmpty()) {
     <div class="drawer__empty">
       <div class="drawer__empty-icon">🛒</div>
       <p>Your cart is empty</p>
@@ -42,9 +40,9 @@
   }
 
   <!-- Items + Footer -->
-  @if (!cart.isEmpty() || sent()) {
-    <!-- Item list (hidden once order is confirmed) -->
-    @if (!sent()) {
+  @if (!cart.isEmpty()) {
+    <!-- Item list (hidden in confirm panel) -->
+    @if (!confirmOpen()) {
       <div class="drawer__items">
         @for (item of cart.items(); track item.product.id) {
           <div class="cart-item">
@@ -109,25 +107,8 @@
 
     <!-- Footer -->
     <div class="drawer__footer">
-      <!-- ── Success state ── -->
-      @if (sent()) {
-        <div class="drawer__success">
-          <div class="drawer__success-icon">✓</div>
-          <h3 class="drawer__success-title">We've received your order!</h3>
-          <p class="drawer__success-msg">
-            Thank you for your order. We'll be in touch shortly with your
-            delivery and payment details.
-          </p>
-          <button
-            class="btn btn--primary drawer__checkout"
-            (click)="finishOrder()"
-          >
-            Continue Shopping
-          </button>
-        </div>
-
-        <!-- ── Confirm panel ── -->
-      } @else if (confirmOpen()) {
+      <!-- ── Confirm panel ── -->
+      @if (confirmOpen()) {
         <div class="drawer__confirm">
           <button class="drawer__back" (click)="closeConfirm()">← Back</button>
           <h3 class="drawer__confirm-title">Review your order</h3>
@@ -152,16 +133,12 @@
             <span>€{{ cart.subtotal().toFixed(2) }}</span>
           </div>
 
-          <p class="drawer__confirm-msg">
-            Once confirmed, we'll contact you directly with your delivery
-            options and payment details.
-          </p>
-
           <button
             class="btn btn--primary drawer__checkout"
-            (click)="confirmOrder()"
+            (click)="checkout()"
+            [disabled]="checkoutLoading()"
           >
-            Confirm Order
+            {{ checkoutLoading() ? 'Processing…' : 'Pay with Stripe' }}
           </button>
         </div>
 
@@ -174,7 +151,7 @@
           >
         </div>
         <p class="drawer__shipping">
-          Shipping & payment details provided on confirmation
+          Secure checkout powered by Stripe
         </p>
         <button
           class="btn btn--primary drawer__checkout"
