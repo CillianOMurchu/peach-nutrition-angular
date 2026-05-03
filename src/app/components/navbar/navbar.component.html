@@ -34,7 +34,13 @@
           <span class="navbar__cart-badge">{{ cart.totalItems() }}</span>
         }
       </button>
-      <a routerLink="/shop" class="btn btn--primary navbar__cta"> Shop Now </a>
+      <a
+        routerLink="/shop"
+        routerLinkActive
+        #shopActive="routerLinkActive"
+        class="btn btn--primary navbar__cta"
+        [class.navbar__cta--hidden]="shopActive.isActive"
+      > Shop Now </a>
 
       <!-- Mobile hamburger -->
       <button
