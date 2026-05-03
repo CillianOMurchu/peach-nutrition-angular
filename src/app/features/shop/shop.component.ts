@@ -32,9 +32,8 @@ export class ShopComponent {
   hasFilters = this.productService.hasActiveFilters;
 
   sortOptions: { value: FilterState['sortBy']; label: string }[] = [
-    { value: 'default', label: 'Featured' },
-    { value: 'price-asc', label: 'Price: Low–High' },
     { value: 'price-desc', label: 'Price: High–Low' },
+    { value: 'price-asc', label: 'Price: Low–High' },
     { value: 'rating', label: 'Top Rated' },
     { value: 'name', label: 'Name A–Z' },
   ];

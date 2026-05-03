@@ -48,6 +48,12 @@
   span {
     font-family: monospace;
     color: var(--color-text-muted);
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
   }
 }
 

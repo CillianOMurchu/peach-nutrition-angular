@@ -16,7 +16,7 @@ const DEFAULT_FILTERS: FilterState = {
   brands: [],
   categories: [],
   inStockOnly: false,
-  sortBy: 'default',
+  sortBy: 'price-desc',
 };
 
 @Injectable({ providedIn: 'root' })
