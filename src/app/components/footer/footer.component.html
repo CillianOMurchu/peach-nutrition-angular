@@ -9,11 +9,12 @@
         <span class="footer__logo">Peach Nutrition</span>
         <p class="footer__tagline">Premium sports nutrition, delivered.</p>
         <address class="footer__address">
-          Peach Nutrition Ltd<br />
-          14 Wellness Way, Dublin 2<br />
-          Ireland<br />
-          <a href="mailto:hello@peachnutrition.ie">hello&#64;peachnutrition.ie</a><br />
-          <a href="tel:+35311234567">+353 1 123 4567</a>
+          {{ co.name }}<br />
+          {{ co.address.street }}<br />
+          {{ co.address.postcode }} {{ co.address.city }}<br />
+          {{ co.address.country }}<br />
+          <a [href]="'mailto:' + co.email.general">{{ co.email.general }}</a><br />
+          <a [href]="co.phone.href">{{ co.phone.display }}</a>
         </address>
       </div>
 
@@ -63,7 +64,7 @@
     <div class="footer__bottom">
 
       <p class="footer__legal">
-        &copy; {{ year }} Peach Nutrition Ltd. Reg. No. 123456.
+        &copy; {{ year }} {{ co.name }}. Reg. No. {{ co.registrationNo }}.
         All rights reserved.
       </p>
 

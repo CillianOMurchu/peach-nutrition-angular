@@ -1,0 +1,73 @@
+<div class="legal">
+  <div class="container">
+
+    <div class="legal__hero">
+      <p class="legal__eyebrow">Legal</p>
+      <h1>Returns &amp; Refunds</h1>
+      <p class="legal__updated">Last updated: 1 May 2025</p>
+    </div>
+
+    <div class="legal__body">
+
+      <section>
+        <div class="legal__highlight">
+          <p>Under Spanish and EU consumer law you have 14 calendar days from delivery to return most items for any reason. We go further — we offer 30 days for a full refund.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>1. Your Right to Withdraw</h2>
+        <p>
+          In accordance with Royal Legislative Decree 1/2007 (General Law for the Defence of Consumers and Users) and EU Directive 2011/83/EU, you may withdraw from your purchase within <strong>14 calendar days</strong> of receiving your order without giving any reason. {{ co.name }} voluntarily extends this period to <strong>30 calendar days</strong>.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Eligible Items</h2>
+        <p>Items are eligible for return if they are:</p>
+        <ul>
+          <li>Unopened and in their original sealed packaging</li>
+          <li>In the same condition as received</li>
+          <li>Not a perishable or hygiene-sensitive product that has been opened</li>
+        </ul>
+        <p>For health and safety reasons, we cannot accept returns of opened food supplements or protein products.</p>
+      </section>
+
+      <section>
+        <h2>3. How to Request a Return</h2>
+        <p>
+          Email <a [href]="'mailto:' + co.email.returns">{{ co.email.returns }}</a> with your order number and reason for return. We will reply within 2 business days with a return authorisation and shipping instructions.
+        </p>
+        <p>
+          You are responsible for return shipping costs unless the item is faulty or was sent in error. We recommend using a tracked service.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Refunds</h2>
+        <p>
+          Once we receive and inspect your return we will process a full refund to your original payment method within <strong>5–7 business days</strong>. You will receive an email confirmation when the refund is issued.
+        </p>
+        <p>
+          Original delivery charges are refunded only if the entire order is returned due to our error or a faulty product.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Damaged or Incorrect Items</h2>
+        <p>
+          If your order arrives damaged or you receive the wrong item, please contact us within 48 hours of delivery at <a [href]="'mailto:' + co.email.general">{{ co.email.general }}</a> and include a photo. We will arrange a replacement or full refund at no cost to you.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Contact</h2>
+        <p>
+          For any return or refund query contact our customer service team at
+          <a [href]="'mailto:' + co.email.general">{{ co.email.general }}</a> or call <a [href]="co.phone.href">{{ co.phone.display }}</a> {{ co.supportHours }}.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</div>

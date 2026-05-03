@@ -17,6 +17,26 @@ export const routes: Routes = [
       import('./features/product/product.component').then(m => m.ProductComponent)
   },
   {
+    path: 'privacy',
+    loadComponent: () =>
+      import('./features/legal/privacy/privacy.component').then(m => m.PrivacyComponent)
+  },
+  {
+    path: 'returns',
+    loadComponent: () =>
+      import('./features/legal/returns/returns.component').then(m => m.ReturnsComponent)
+  },
+  {
+    path: 'shipping',
+    loadComponent: () =>
+      import('./features/legal/shipping/shipping.component').then(m => m.ShippingComponent)
+  },
+  {
+    path: 'terms',
+    loadComponent: () =>
+      import('./features/legal/terms/terms.component').then(m => m.TermsComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

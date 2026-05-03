@@ -1,0 +1,79 @@
+<div class="legal">
+  <div class="container">
+
+    <div class="legal__hero">
+      <p class="legal__eyebrow">Legal</p>
+      <h1>Privacy Policy</h1>
+      <p class="legal__updated">Last updated: 1 May 2025</p>
+    </div>
+
+    <div class="legal__body">
+
+      <section>
+        <div class="legal__highlight">
+          <p>{{ co.name }} is committed to protecting your personal data in accordance with EU Regulation 2016/679 (GDPR) and Spain's Organic Law 3/2018 (LOPDGDD).</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>1. Who We Are</h2>
+        <p>
+          The data controller is <strong>{{ co.name }}</strong>, with registered address at {{ co.address.full }}, and CIF {{ co.cif }}. You can reach our data protection contact at
+          <a [href]="'mailto:' + co.email.privacy">{{ co.email.privacy }}</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. What Data We Collect</h2>
+        <p>When you place an order or create an account we collect:</p>
+        <ul>
+          <li>Name and surname</li>
+          <li>Delivery address within Spain</li>
+          <li>Email address and phone number</li>
+          <li>Payment method details (processed securely by our payment provider)</li>
+          <li>Order history and browsing preferences</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Why We Use Your Data</h2>
+        <p>We process your personal data to:</p>
+        <ul>
+          <li>Fulfil and deliver your orders across Spain</li>
+          <li>Manage your customer account</li>
+          <li>Send order confirmations and shipping updates</li>
+          <li>Comply with Spanish tax and consumer-protection law</li>
+          <li>Send marketing communications, only with your explicit consent</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Legal Basis</h2>
+        <p>
+          Processing for order fulfilment is necessary for the performance of a contract. Marketing communications are based on your consent, which you may withdraw at any time by clicking "unsubscribe" in any email or contacting us directly.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. How Long We Keep Your Data</h2>
+        <p>
+          Order records are retained for 5 years to comply with Spanish accounting and tax obligations (Ley 58/2003 General Tributaria). Account data is kept until you request deletion.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Your Rights</h2>
+        <p>Under the GDPR and LOPDGDD you have the right to access, rectify, erase, restrict, and port your data, and to object to processing. You may also lodge a complaint with the Spanish Data Protection Authority (AEPD) at <a [href]="co.externalLinks.aepd" target="_blank" rel="noopener">aepd.es</a>.</p>
+        <p>To exercise any right, email <a [href]="'mailto:' + co.email.privacy">{{ co.email.privacy }}</a> with proof of identity.</p>
+      </section>
+
+      <section>
+        <h2>7. Cookies</h2>
+        <p>
+          We use strictly necessary cookies to operate the site and, with your consent, analytical cookies to improve your experience. You can manage cookie preferences at any time via the cookie banner.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</div>

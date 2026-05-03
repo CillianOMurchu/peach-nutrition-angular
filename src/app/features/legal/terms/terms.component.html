@@ -1,0 +1,96 @@
+<div class="legal">
+  <div class="container">
+
+    <div class="legal__hero">
+      <p class="legal__eyebrow">Legal</p>
+      <h1>Terms &amp; Conditions</h1>
+      <p class="legal__updated">Last updated: 1 May 2025</p>
+    </div>
+
+    <div class="legal__body">
+
+      <section>
+        <div class="legal__highlight">
+          <p>By placing an order with {{ co.name }} you agree to these terms, which are governed by Spanish law.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>1. About Us</h2>
+        <p>
+          {{ co.name }} (CIF {{ co.cif }}) is a company registered in Spain with registered office at {{ co.address.full }}. We operate the online store at {{ co.website }}.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Placing an Order</h2>
+        <p>
+          By completing the checkout process you make an offer to purchase the selected products. A binding contract is formed when we send you an order confirmation email. We reserve the right to refuse or cancel orders at our discretion, in which case a full refund will be issued promptly.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. Prices and Payment</h2>
+        <p>
+          All prices are shown in Euros (€) and include Spanish VAT (IVA) at the applicable rate. We accept Visa, Mastercard, Apple Pay, and Google Pay. Payment is taken at the time of order.
+        </p>
+        <p>
+          We reserve the right to correct pricing errors. If the correct price is higher than the displayed price we will contact you before proceeding.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Product Information</h2>
+        <p>
+          We take reasonable care to ensure product descriptions and images are accurate. However, slight variations in colour or packaging may occur. Nutritional information is provided for guidance only; always read the label before consumption.
+        </p>
+        <p>
+          Our products are sports nutrition supplements intended for healthy adults. They are not medicines and are not intended to diagnose, treat, cure, or prevent any condition. Consult a healthcare professional before use if you are pregnant, breastfeeding, or have a medical condition.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Consumer Rights</h2>
+        <p>
+          Nothing in these terms affects your statutory rights under Royal Legislative Decree 1/2007 (General Law for the Defence of Consumers and Users) or other applicable Spanish and EU consumer law.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Liability</h2>
+        <p>
+          We are not liable for indirect or consequential losses arising from your use of our products or website, except where such liability cannot be excluded by law. Our total liability to you for any claim shall not exceed the value of the order to which the claim relates.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Intellectual Property</h2>
+        <p>
+          All content on this website — including text, images, logos, and design — is the property of {{ co.name }} or its licensors and may not be reproduced without prior written consent.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Governing Law</h2>
+        <p>
+          These terms are governed by and construed in accordance with Spanish law. Any dispute arising from these terms shall be subject to the jurisdiction of the courts of {{ co.address.city }}, Spain, without prejudice to your rights as a consumer to bring proceedings in your place of habitual residence.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Changes to These Terms</h2>
+        <p>
+          We may update these terms from time to time. The version published on this page applies to all orders placed from the "last updated" date shown above.
+        </p>
+      </section>
+
+      <section>
+        <h2>10. Contact</h2>
+        <p>
+          For any legal enquiries contact <a [href]="'mailto:' + co.email.legal">{{ co.email.legal }}</a> or write to {{ co.address.full }}.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</div>
