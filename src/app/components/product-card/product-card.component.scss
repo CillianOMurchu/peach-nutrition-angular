@@ -121,6 +121,7 @@
     display: flex;
     align-items: baseline;
     gap: var(--spacing-sm);
+    min-width: 0;
   }
 
   &__price {
@@ -164,6 +165,14 @@
       background: var(--color-border);
       cursor: not-allowed;
     }
+  }
+}
+
+@media (max-width: 480px) {
+  .card__add-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
   }
 }
 
