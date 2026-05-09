@@ -1,17 +1,25 @@
 @if (open && images.length) {
   <div class="lightbox" (click)="closed.emit()">
-    <button class="lightbox__close" (click)="closed.emit()" aria-label="Close">✕</button>
+    <button class="lightbox__close" (click)="closed.emit()" aria-label="Close">
+      ✕
+    </button>
 
     @if (images.length > 1) {
       <button
         class="lightbox__arrow lightbox__arrow--prev"
         (click)="$event.stopPropagation(); prev()"
         aria-label="Previous"
-      >‹</button>
+      >
+        ‹
+      </button>
     }
 
     <div class="lightbox__image-wrap" (click)="$event.stopPropagation()">
-      <img [src]="images[index()].src" [alt]="images[index()].alt" class="lightbox__image" />
+      <img
+        [src]="images[index()].src"
+        [alt]="images[index()].alt"
+        class="lightbox__image"
+      />
     </div>
 
     @if (images.length > 1) {
@@ -19,7 +27,9 @@
         class="lightbox__arrow lightbox__arrow--next"
         (click)="$event.stopPropagation(); next()"
         aria-label="Next"
-      >›</button>
+      >
+        ›
+      </button>
 
       <div class="lightbox__dots">
         @for (img of images; track $index) {
