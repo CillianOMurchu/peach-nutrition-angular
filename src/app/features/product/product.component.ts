@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   computed,
-  HostListener,
   inject,
   OnInit,
   signal,
@@ -11,11 +10,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Product } from '@core/models/product.model';
 import { CartService } from '@core/services/cart.service';
 import { ProductService } from '@core/services/product.service';
+import { LightboxComponent } from '@components/lightbox/lightbox.component';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LightboxComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
@@ -28,7 +28,6 @@ export class ProductComponent implements OnInit {
   lightboxOpen = signal(false);
   product = signal<Product | null>(null);
   activeIndex = signal(0);
-  lightboxIndex = signal(0);
   quantity = signal(1);
 
   stars = computed(() => {
@@ -57,11 +56,6 @@ export class ProductComponent implements OnInit {
       .filter((r) => r.brand === p.brand && r.id !== p.id)
       .slice(0, 4);
   });
-
-  @HostListener('document:keydown.escape')
-  onEscape() {
-    this.closeLightbox();
-  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
@@ -111,15 +105,10 @@ export class ProductComponent implements OnInit {
   }
 
   openLightbox() {
-    this.lightboxIndex.set(this.activeIndex());
     this.lightboxOpen.set(true);
   }
 
   closeLightbox() {
     this.lightboxOpen.set(false);
-  }
-
-  setLightboxIndex(index: number) {
-    this.lightboxIndex.set(index);
   }
 }

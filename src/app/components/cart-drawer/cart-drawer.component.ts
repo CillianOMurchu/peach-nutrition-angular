@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ProductImage } from '@core/models/product.model';
 import { CartItem, CartService } from '@core/services/cart.service';
+import { LightboxComponent } from '@components/lightbox/lightbox.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cart-drawer',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, LightboxComponent],
   templateUrl: './cart-drawer.component.html',
   styleUrl: './cart-drawer.component.scss'
 })
@@ -17,6 +19,13 @@ export class CartDrawerComponent {
   confirmOpen = signal(false);
   checkoutLoading = signal(false);
   checkoutError = signal('');
+  lightboxImages = signal<ProductImage[]>([]);
+  lightboxOpen = signal(false);
+
+  openItemLightbox(item: CartItem) {
+    this.lightboxImages.set(item.product.images);
+    this.lightboxOpen.set(true);
+  }
 
   openConfirm() {
     this.confirmOpen.set(true);

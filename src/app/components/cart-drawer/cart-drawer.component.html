@@ -46,7 +46,7 @@
       <div class="drawer__items">
         @for (item of cart.items(); track item.product.id) {
           <div class="cart-item">
-            <div class="cart-item__image-wrap">
+            <div class="cart-item__image-wrap" (click)="openItemLightbox(item)">
               <img
                 [src]="item.product.images[0].src"
                 [alt]="item.product.images[0].alt"
@@ -165,3 +165,9 @@
     </div>
   }
 </aside>
+
+<app-lightbox
+  [images]="lightboxImages()"
+  [open]="lightboxOpen()"
+  (closed)="lightboxOpen.set(false)"
+/>

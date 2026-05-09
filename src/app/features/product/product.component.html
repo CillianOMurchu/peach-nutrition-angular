@@ -209,70 +209,12 @@
       }
     </div>
 
-    <!-- Lightbox -->
-    @if (lightboxOpen()) {
-      <div class="lightbox" (click)="closeLightbox()">
-        <button
-          class="lightbox__close"
-          (click)="closeLightbox()"
-          aria-label="Close"
-        >
-          ✕
-        </button>
-
-        <!-- Prev arrow -->
-        @if (product()!.images.length > 1) {
-          <button
-            class="lightbox__arrow lightbox__arrow--prev"
-            (click)="
-              $event.stopPropagation();
-              setLightboxIndex(
-                (lightboxIndex() - 1 + product()!.images.length) %
-                  product()!.images.length
-              )
-            "
-            aria-label="Previous"
-          >
-            ‹
-          </button>
-        }
-
-        <div class="lightbox__image-wrap" (click)="$event.stopPropagation()">
-          <img
-            [src]="product()!.images[lightboxIndex()].src"
-            [alt]="product()!.images[lightboxIndex()].alt"
-            class="lightbox__image"
-          />
-        </div>
-
-        <!-- Next arrow -->
-        @if (product()!.images.length > 1) {
-          <button
-            class="lightbox__arrow lightbox__arrow--next"
-            (click)="
-              $event.stopPropagation();
-              setLightboxIndex((lightboxIndex() + 1) % product()!.images.length)
-            "
-            aria-label="Next"
-          >
-            ›
-          </button>
-        }
-
-        <!-- Dot indicators -->
-        @if (product()!.images.length > 1) {
-          <div class="lightbox__dots">
-            @for (img of product()!.images; track $index) {
-              <button
-                class="gallery__dot"
-                [class.gallery__dot--active]="lightboxIndex() === $index"
-                (click)="$event.stopPropagation(); setLightboxIndex($index)"
-              ></button>
-            }
-          </div>
-        }
-      </div>
-    }
+    <app-lightbox
+      [images]="p.images"
+      [open]="lightboxOpen()"
+      [initialIndex]="activeIndex()"
+      (closed)="closeLightbox()"
+    />
   </div>
 } @else if (!productService.loading()) {
   <div class="container" style="padding: 4rem 0; text-align: center">
