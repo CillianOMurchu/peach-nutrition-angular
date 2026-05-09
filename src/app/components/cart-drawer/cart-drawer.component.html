@@ -116,20 +116,15 @@
           <ul class="drawer__confirm-items">
             @for (item of cart.items(); track item.product.id) {
               <li class="drawer__confirm-item">
-                <span class="drawer__confirm-name">{{
-                  item.product.name
-                }}</span>
-                <span class="drawer__confirm-detail"
-                  >×{{ item.quantity }} — €{{
-                    itemTotal(item).toFixed(2)
-                  }}</span
-                >
+                <span class="drawer__confirm-name">{{ item.product.name }}</span>
+                <span class="drawer__confirm-qty">×{{ item.quantity }}</span>
+                <span class="drawer__confirm-price">€{{ itemTotal(item).toFixed(2) }}</span>
               </li>
             }
           </ul>
 
           <div class="drawer__confirm-total">
-            <span>Total</span>
+            <span>Order total</span>
             <span>€{{ cart.subtotal().toFixed(2) }}</span>
           </div>
 

@@ -1,0 +1,12 @@
+app-pinterest-grid .masonry > * {
+  break-inside: avoid;
+  display: block;
+  margin-bottom: var(--grid-gap, 16px);
+  transition:
+    transform 0.4s var(--ease, ease-out),
+    box-shadow 0.4s ease-out;
+}
+app-pinterest-grid .masonry > *:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.12);
+}

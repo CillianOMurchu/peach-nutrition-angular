@@ -65,7 +65,9 @@
               class="slide-up"
               [style.transition-delay]="i * 80 + 'ms'"
             >
-              <app-product-card [product]="product" />
+              <app-pintrest-grid [gap]="20">
+                <app-product-card [product]="product" />
+              </app-pintrest-grid>
             </div>
           }
         </div>
