@@ -63,10 +63,11 @@
     position: absolute;
     left: 2rem;
     z-index: 2;
-    top: 10%;
+    top: 0%;
 
     @media (max-width: 860px) {
       // flex-direction: row;
+      display: none;
     }
   }
 
