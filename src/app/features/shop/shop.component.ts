@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FilterPanelComponent } from '@components/filter-panel/filter-panel.component';
 import { ProductCardComponent } from '@components/product-card/product-card.component';
 import { SearchBarComponent } from '@components/search-bar/search-bar.component';
@@ -18,8 +19,9 @@ import { FilterState, ProductService } from '@core/services/product.service';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
-export class ShopComponent {
+export class ShopComponent implements OnInit {
   private productService = inject(ProductService);
+  private route = inject(ActivatedRoute);
 
   sidebarOpen = signal(false);
 
@@ -37,6 +39,14 @@ export class ShopComponent {
     { value: 'rating', label: 'Top Rated' },
     { value: 'name', label: 'Name A–Z' },
   ];
+
+  ngOnInit() {
+    this.route.queryParamMap.subscribe(params => {
+      this.productService.clearFilters();
+      const category = params.get('category') as Category | null;
+      if (category) this.productService.toggleCategory(category);
+    });
+  }
 
   onSearch(term: string) {
     this.productService.setSearch(term);

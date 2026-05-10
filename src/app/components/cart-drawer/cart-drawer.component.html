@@ -140,47 +140,11 @@
                   item.product.name
                 }}</span>
                 <div class="cart-item__qty">
-                  <button
-                    (click)="cart.decrement(item.product.id)"
-                    aria-label="Decrease quantity"
-                  >
-                    −
-                  </button>
                   <span>{{ item.quantity }}</span>
-                  <button
-                    (click)="cart.increment(item.product.id)"
-                    [disabled]="item.quantity >= item.product.stockQuantity"
-                    aria-label="Increase quantity"
-                  >
-                    +
-                  </button>
                 </div>
                 <span class="drawer__confirm-price"
                   >€{{ itemTotal(item).toFixed(2) }}</span
                 >
-                <button
-                  class="drawer__confirm-remove"
-                  (click)="removeItem(item.product.id)"
-                  aria-label="Remove item"
-                >
-                  <svg
-                    width="11"
-                    height="12"
-                    viewBox="0 0 11 12"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M1 3h9" />
-                    <path d="M4 3V2h3v1" />
-                    <path
-                      d="M2 3l.6 6.5c.03.28.27.5.57.5h4.66c.3 0 .54-.22.57-.5L9 3"
-                    />
-                  </svg>
-                  Remove
-                </button>
               </li>
             }
           </ul>
