@@ -50,10 +50,175 @@
   }
 
   &__title {
-    font-size: clamp(48px, 8vw, 88px);
+    // font-size: clamp(48px, 8vw, 88px);
+    // line-height: 1;
+    // color: white;
+    // margin-bottom: var(--spacing-lg);
+
+    font-weight: 800;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    --primaryColorRef: #ffffff;
+    --mixedColor1Ref: #e2e2e2;
+    --mixedColor1_5Ref: #d4d4d4;
+    --mixedColor2Ref: #c6c6c6;
+    --mixedColor3Ref: #aaa;
+    --mixedColor4Ref: #8d8d8d;
+    --mixedColor5Ref: #717171;
+    --mixedColor6Ref: #555;
+    --mixedColor7Ref: #383838;
+    --mixedColor7_5Ref: #2a2a2a;
+    --mixedColor8Ref: #1c1c1c;
+    --secondaryColorRef: #000000;
+    --tertiaryColorRef: #e4001c;
+    --secondaryColorGradientMin: rgba(0, 0, 0, 0);
+    --secondaryColorGradientMax: rgba(0, 0, 0, 100);
+    --primaryColorGradientMin: rgba(255, 255, 255, 0);
+    --primaryColorGradientMax: rgba(255, 255, 255, 100);
+    --menuBackgroundColor: var(--mixedColor8Ref);
+    --overlayBackgroundColor: var(--mixedColor8Ref);
+    --lozengeColor: var(--primaryColorRef);
+    --lozengeBackgroundColor: var(--secondaryColorRef);
+    --overlayGradientMin: rgba(0, 0, 0, 0);
+    --overlayGradientMax: rgba(0, 0, 0, 100);
+    --fontInfoShadowColor: rgba(0, 0, 0, 100);
+    --foregroundColor: var(--primaryColorRef);
+    --foregroundColorMix1: var(--mixedColor1Ref);
+    --foregroundColorMix1_5: var(--mixedColor1_5Ref);
+    --foregroundColorMix2: var(--mixedColor2Ref);
+    --foregroundColorMix3: var(--mixedColor3Ref);
+    --foregroundColorMix4: var(--mixedColor4Ref);
+    --foregroundColorMix5: var(--mixedColor5Ref);
+    --foregroundColorMix6: var(--mixedColor6Ref);
+    --foregroundColorMix7: var(--mixedColor7Ref);
+    --foregroundColorMix7_5: var(--mixedColor7_5Ref);
+    --foregroundColorMix8: var(--mixedColor8Ref);
+    --backgroundColor: var(--secondaryColorRef);
+    --backgroundGradientColorMin: var(--secondaryColorGradientMin);
+    --backgroundGradientColorMax: var(--secondaryColorGradientMax);
+    --borderColor: var(--mixedColor7Ref);
+    --highlightColor: var(--tertiaryColorRef);
+    --errorColor: #e4001c;
+    --viewportBasis: 1680;
+    --fontSizeFluid1: calc(14 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid2: calc(16 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid3: calc(18 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid4: calc(24 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid5: calc(30 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid5_2: calc(32 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid5_5: calc(36 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid6: calc(48 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid6_5: calc(58 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid7: calc(64 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid7_5: calc(72 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid8: calc(80 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid9: calc(100 / var(--viewportBasis) * 100vw);
+    --fontSizeFluid10: calc(120 / var(--viewportBasis) * 100vw);
+    --fontBlockVerticalPadding: 30px;
+    --fontBlockHorizontalPadding: 20px;
+    --fontBlockHeight: calc(
+      (5 * var(--fontSizeFixed2) * 1.3333) +
+        (var(--fontBlockVerticalPadding) * 2)
+    );
+    --linkUnderlineThickness: max(0.0313em, 1px);
+    --linkUnderlineThicknessHover: max(0.0625em, 2px);
+    --linkUnderlineOffset: 0.12em;
+    --fontFamilyFallbackSansSerif:
+      -apple-system, system-ui, blinkmacsystemfont, "Helvetica", "Arial",
+      sans-serif;
+    --fontFamilyFallbackSerif:
+      georgia, cambria, "Times New Roman", times, serif;
+    --fontFamilyFallbackMono: "Lucida Console", monaco, monospace;
+    --fontFamilySoehne: "SOEHNE", var(--fontFamilyFallbackSansSerif);
+    --fontFamilySoehneMono: "SOEHNE_MONO", var(--fontFamilyFallbackMono);
+    --fontFamilySoehneIkon: "SOEHNE_IKON";
+    --fontFamilyMartinaPlantijn:
+      "MARTINA_PLANTIJN", var(--fontFamilyFallbackSerif);
+    --fontFamilyCalibre2: "CALIBRE2", var(--fontFamilyFallbackSansSerif);
+    --gridColumnCount: 12;
+    --gridColumnGap: 10px;
+    --gridMarginGap: 20px;
+    --gridTemplateColumnsDefault: repeat(
+      var(--gridColumnCount),
+      minmax(0, 1fr)
+    );
+    --lineHeightHeading1: 0.98;
+    --lineHeightHeading2: 1.25;
+    --lineHeightHeading3: 1.1;
+    --lineHeightBody1: 1.3333;
+    --lineHeightBody2: 1.5;
+    --lineHeightBody3: 0.75;
+    --lineHeightBody4: 1.8;
+    --lineHeightBlogBody: 1.4;
+    --lineHeightBlogBodyPx: calc(
+      var(--lineHeightBlogBody) * var(--fontSizeBlog)
+    );
+    --spacing0: calc(4 / var(--viewportBasis) * 100vw);
+    --spacing1: calc(8 / var(--viewportBasis) * 100vw);
+    --spacing2: calc(16 / var(--viewportBasis) * 100vw);
+    --spacing3: calc(24 / var(--viewportBasis) * 100vw);
+    --spacing4: calc(32 / var(--viewportBasis) * 100vw);
+    --spacing5: calc(40 / var(--viewportBasis) * 100vw);
+    --spacing6: calc(60 / var(--viewportBasis) * 100vw);
+    --spacing7: calc(80 / var(--viewportBasis) * 100vw);
+    --spacing8: calc(160 / var(--viewportBasis) * 100vw);
+    --spacing9: calc(240 / var(--viewportBasis) * 100vw);
+    --spacing10: calc(320 / var(--viewportBasis) * 100vw);
+    --spacing11: calc(580 / var(--viewportBasis) * 100vw);
+    --spacingCheckable: 0.33em;
+    --streamFieldSpacing: calc(130 / var(--viewportBasis) * 100vw);
+    --navbarVerticalMargin: 10px;
+    --navbarHeightCollapsed: 48px;
+    --navbarHeightAtLoad: var(--navbarHeightCollapsed);
+    --viewportHeightSmall: 100svh;
+    --viewportHeightWithoutNavbar: calc(100vh - var(--navbarHeightAtLoad));
+    --viewportHeightWithoutNavbarCollapsed: calc(
+      100vh - var(--navbarHeightCollapsed)
+    );
+    --viewportHeightSmallWithoutNavbar: calc(
+      var(--viewportHeightSmall) - var(--navbarHeightAtLoad)
+    );
+    --cartPaddingTop: 20px;
+    --cartPaddingRight: 40px;
+    --cartPaddingBottom: 30px;
+    --cartPaddingLeft: 30px;
+    --pagePaddingBottom: 25vh;
+    --paddingPageDefault: 0 0 var(--pagePaddingBottom) 0;
+    --paddingPageMedium: max(100px, calc(26vh - var(--navbarHeightAtLoad))) 0
+      var(--pagePaddingBottom) 0;
+    --imageFilter: none;
+    --imageOpacity: 1;
+    --imageHoverOpacity: 0.8;
+    --fontSizeFixed1: 12px;
+    --fontSizeFixed2: 14px;
+    --fontSizeFixed3: 16px;
+    --fontSizeFixed4: 20px;
+    --fontSizeFixed5: 25px;
+    --fontSizeFixed6: 30px;
+    --fontSizeFixed7: 48px;
+    --fontSizeFixed8: 72px;
+    --fontSizeBlog: 20px;
+    --fontSizeBlogGlyph: 19px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: calc(var(--fontSizeFluid10) * 1);
     line-height: 1;
+    color: var(--foregroundColorMix5);
+    font-family: "k-calibre-medium";
+    font-style: normal;
+    margin-top: -0.1964999999999999em;
+    margin-bottom: 0.016499999999999737em;
+    font-weight: 800;
     color: white;
-    margin-bottom: var(--spacing-lg);
+    opacity: 0.7;
+
+    @media (max-width: 900px) {
+      font-size: 64px;
+    }
   }
 
   &__sub {
@@ -283,6 +448,11 @@
     color: var(--color-text-muted);
     transition: var(--transition);
   }
+}
+
+// ── Product wall ───────────────────────────────────────────────
+.wall {
+  padding: var(--spacing-2xl) 0;
 }
 
 // ── Bottom CTA ─────────────────────────────────────────────────

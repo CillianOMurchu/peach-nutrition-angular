@@ -10,6 +10,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { PintrestGridComponent } from '@components/pintrest-grid/pintrest-grid.component';
 import { ProductCardComponent } from '@components/product-card/product-card.component';
+import { ProductMosaicComponent } from '@components/product-mosaic/product-mosaic.component';
 import { ProductService } from '@core/services/product.service';
 
 @Component({
@@ -20,6 +21,7 @@ import { ProductService } from '@core/services/product.service';
     RouterLink,
     ProductCardComponent,
     PintrestGridComponent,
+    ProductMosaicComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

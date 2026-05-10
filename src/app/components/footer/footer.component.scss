@@ -106,7 +106,27 @@
 
   &__legal {
     font-size: 12px;
-    color: var(--color-text-light);
+    color: var(--color-text-muted);
+  }
+
+  // ── Trust badges ──────────────────────────────────────────────
+  &__badges {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    img {
+      height: 28px;
+      width: auto;
+      opacity: 0.45;
+      filter: grayscale(1);
+      transition: var(--transition);
+
+      &:hover {
+        opacity: 0.85;
+        filter: grayscale(0);
+      }
+    }
   }
 
   // ── Payment icons ─────────────────────────────────────────────

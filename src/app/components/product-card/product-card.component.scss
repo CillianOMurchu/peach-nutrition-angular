@@ -122,6 +122,7 @@
     align-items: baseline;
     gap: var(--spacing-sm);
     min-width: 0;
+    display: grid;
   }
 
   &__price {

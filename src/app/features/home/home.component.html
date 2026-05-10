@@ -75,6 +75,15 @@
     </div>
   </section>
 
+  <!-- ── Product wall ── -->
+  @if (!productService.loading()) {
+    <section class="wall" #animateIn>
+      <div class="container">
+        <app-product-mosaic [products]="productService.filteredProducts()" />
+      </div>
+    </section>
+  }
+
   <!-- ── Bottom CTA ── -->
   <section class="cta" #animateIn>
     <div class="cta__inner container">

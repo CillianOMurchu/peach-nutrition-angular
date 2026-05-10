@@ -129,6 +129,7 @@ ul {
   font-weight: 500;
   transition: var(--transition);
   white-space: nowrap;
+  touch-action: manipulation;
 
   &--primary {
     background: var(--color-peach);

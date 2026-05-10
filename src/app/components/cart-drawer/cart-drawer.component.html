@@ -10,7 +10,7 @@
     <h2 class="drawer__title">
       @if (cart.totalItems() > 0) {
         <span class="drawer__count">{{ cart.totalItems() }}</span>
-        Item{{ cart.totalItems() > 1 ? 's' : '' }}
+        Item{{ cart.totalItems() > 1 ? "s" : "" }}
       } @else {
         Your Cart
       }
@@ -27,7 +27,10 @@
   <!-- Empty state -->
   @if (cart.isEmpty()) {
     <div class="drawer__empty">
-      <div class="drawer__empty-icon">🛒</div>
+      <div class="drawer__empty-icon">
+        <!-- use the shopping cart icon here -->
+        <img src="cart-icon.svg" alt="" width="60" height="60" />
+      </div>
       <p>Your cart is empty</p>
       <button
         class="btn btn--primary"
@@ -96,6 +99,23 @@
                   (click)="cart.remove(item.product.id)"
                   aria-label="Remove item"
                 >
+                  <svg
+                    width="11"
+                    height="12"
+                    viewBox="0 0 11 12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M1 3h9" />
+                    <path d="M4 3V2h3v1" />
+                    <path
+                      d="M2 3l.6 6.5c.03.28.27.5.57.5h4.66c.3 0 .54-.22.57-.5L9 3"
+                    />
+                  </svg>
+
                   Remove
                 </button>
               </div>
@@ -116,9 +136,51 @@
           <ul class="drawer__confirm-items">
             @for (item of cart.items(); track item.product.id) {
               <li class="drawer__confirm-item">
-                <span class="drawer__confirm-name">{{ item.product.name }}</span>
-                <span class="drawer__confirm-qty">×{{ item.quantity }}</span>
-                <span class="drawer__confirm-price">€{{ itemTotal(item).toFixed(2) }}</span>
+                <span class="drawer__confirm-name">{{
+                  item.product.name
+                }}</span>
+                <div class="cart-item__qty">
+                  <button
+                    (click)="cart.decrement(item.product.id)"
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
+                  <span>{{ item.quantity }}</span>
+                  <button
+                    (click)="cart.increment(item.product.id)"
+                    [disabled]="item.quantity >= item.product.stockQuantity"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+                <span class="drawer__confirm-price"
+                  >€{{ itemTotal(item).toFixed(2) }}</span
+                >
+                <button
+                  class="drawer__confirm-remove"
+                  (click)="removeItem(item.product.id)"
+                  aria-label="Remove item"
+                >
+                  <svg
+                    width="11"
+                    height="12"
+                    viewBox="0 0 11 12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M1 3h9" />
+                    <path d="M4 3V2h3v1" />
+                    <path
+                      d="M2 3l.6 6.5c.03.28.27.5.57.5h4.66c.3 0 .54-.22.57-.5L9 3"
+                    />
+                  </svg>
+                  Remove
+                </button>
               </li>
             }
           </ul>
@@ -137,7 +199,7 @@
             (click)="checkout()"
             [disabled]="checkoutLoading()"
           >
-            {{ checkoutLoading() ? 'Processing…' : 'Pay with Stripe' }}
+            {{ checkoutLoading() ? "Processing…" : "Pay with Stripe" }}
           </button>
         </div>
 
@@ -149,9 +211,22 @@
             >€{{ cart.subtotal().toFixed(2) }}</span
           >
         </div>
-        <p class="drawer__shipping">
-          Secure checkout powered by Stripe
-        </p>
+        <div class="drawer__shipping">
+          <img
+            src="images/secure-payment.png"
+            alt=""
+            aria-hidden="true"
+            height="14"
+          />
+          <p>Secure checkout powered by Stripe</p>
+          <div class="drawer__payment-logos">
+            <img src="images/logos/payment/visa.svg" alt="Visa" />
+            <img src="images/logos/payment/mastercard.svg" alt="Mastercard" />
+            <img src="images/logos/payment/apple.svg" alt="Apple Pay" />
+            <img src="images/logos/payment/google.svg" alt="Google Pay" />
+          </div>
+        </div>
+
         <button
           class="btn btn--primary drawer__checkout"
           (click)="openConfirm()"

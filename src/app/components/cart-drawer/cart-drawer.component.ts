@@ -35,6 +35,11 @@ export class CartDrawerComponent {
     this.confirmOpen.set(false);
   }
 
+  removeItem(id: string) {
+    this.cart.remove(id);
+    if (this.cart.isEmpty()) this.closeConfirm();
+  }
+
   itemTotal(item: CartItem): number {
     const price = item.product.discountPercentage
       ? item.product.price * (1 - item.product.discountPercentage / 100)
