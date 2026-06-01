@@ -1,7 +1,6 @@
 <div class="success">
   <div class="container">
     <div class="success__card">
-
       <div class="success__icon">
         <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="26" cy="26" r="26" fill="var(--color-peach-light)" />
@@ -22,14 +21,15 @@
       </p>
 
       @if (sessionId) {
-        <p class="success__ref">Order ref: <span>{{ sessionId }}</span></p>
+        <p class="success__ref">
+          Order ref: <span>Order Reference Numba</span>
+        </p>
       }
 
       <div class="success__actions">
         <a routerLink="/shop" class="btn btn--primary">Continue Shopping</a>
         <a routerLink="/" class="btn btn--ghost">Back to Home</a>
       </div>
-
     </div>
   </div>
 </div>

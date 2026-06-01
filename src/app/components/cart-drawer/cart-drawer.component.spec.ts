@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
 import { computed, signal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { CartDrawerComponent } from './cart-drawer.component';
-import { CartService, CartItem } from '@core/services/cart.service';
 import { Product } from '@core/models/product.model';
-import { environment } from '../../../environments/environment';
+import { CartItem, CartService } from '@core/services/cart.service';
+import { environment } from '../../../environments/environment.production';
+import { CartDrawerComponent } from './cart-drawer.component';
 
 const BASE_PRODUCT: Product = {
   id: 'prod-1',

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { CartService } from '@core/services/cart.service';
 
 @Component({
   selector: 'app-order-cancelled',
@@ -8,4 +9,12 @@ import { RouterLink } from '@angular/router';
   templateUrl: './order-cancelled.component.html',
   styleUrl: './order-cancelled.component.scss',
 })
-export class OrderCancelledComponent {}
+export class OrderCancelledComponent {
+  private router = inject(Router);
+  private cart = inject(CartService);
+
+  returnToCart() {
+    this.cart.open();
+    this.router.navigate(['/shop']);
+  }
+}

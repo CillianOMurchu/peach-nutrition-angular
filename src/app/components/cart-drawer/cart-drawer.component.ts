@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LightboxComponent } from '@components/lightbox/lightbox.component';
 import { ProductImage } from '@core/models/product.model';
 import { CartItem, CartService } from '@core/services/cart.service';
-import { LightboxComponent } from '@components/lightbox/lightbox.component';
 import { environment } from '../../../environments/environment';
 
 @Component({
