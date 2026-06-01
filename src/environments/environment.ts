@@ -1,7 +1,7 @@
+// Auto-generated at build time — do not edit manually.
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: '/api',
-  backendUrl: 'http://localhost:10000',
-  stripePublishableKey:
-    'pk_test_51FMuCtAnqP6AA7Y3cSPPso2sq8Wol29hesBGiENoje1XJlrr1WisrNR8sR4ErGdNS7adEz9soicniJG07S1CPNrb00fkHMbTCV',
+  backendUrl: 'https://peach-nutrition-angular-server.onrender.com',
+  stripePublishableKey: '',
 };
