@@ -10,12 +10,21 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Product } from '@core/models/product.model';
 import { CartService } from '@core/services/cart.service';
 import { ProductService } from '@core/services/product.service';
+import { discountedPrice } from '@core/utils/pricing';
 import { LightboxComponent } from '@components/lightbox/lightbox.component';
+import { TagListComponent } from '@components/tag-list/tag-list.component';
+import { ProductBadgesComponent } from '@components/product-badges/product-badges.component';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, RouterLink, LightboxComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    LightboxComponent,
+    TagListComponent,
+    ProductBadgesComponent,
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
@@ -38,8 +47,7 @@ export class ProductComponent implements OnInit {
 
   discountedPrice = computed(() => {
     const p = this.product();
-    if (!p || !p.discountPercentage) return null;
-    return p.price * (1 - p.discountPercentage / 100);
+    return p ? discountedPrice(p) : null;
   });
 
   isOutOfStock = computed(() => (this.product()?.stockQuantity ?? 0) === 0);
@@ -95,13 +103,21 @@ export class ProductComponent implements OnInit {
     this.activeIndex.set(index);
   }
 
-  incrementQty() {
-    const max = this.product()?.stockQuantity ?? 1;
-    this.quantity.update((q) => Math.min(q + 1, max));
+  quantityOpen = signal(false);
+
+  quantityOptions = computed(() => {
+    // Offer up to 48, but never more than what's in stock.
+    const max = Math.min(this.product()?.stockQuantity ?? 0, 48);
+    return Array.from({ length: max }, (_, i) => i + 1);
+  });
+
+  toggleQuantity() {
+    this.quantityOpen.update((open) => !open);
   }
 
-  decrementQty() {
-    this.quantity.update((q) => Math.max(q - 1, 1));
+  selectQuantity(value: number) {
+    this.quantity.set(value);
+    this.quantityOpen.set(false);
   }
 
   openLightbox() {

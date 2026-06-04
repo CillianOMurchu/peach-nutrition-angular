@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LightboxComponent } from '@components/lightbox/lightbox.component';
-import { ProductImage } from '@core/models/product.model';
+import { Product, ProductImage } from '@core/models/product.model';
 import { CartItem, CartService } from '@core/services/cart.service';
+import { effectivePrice } from '@core/utils/pricing';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -11,7 +12,7 @@ import { environment } from '../../../environments/environment';
   standalone: true,
   imports: [CommonModule, RouterLink, LightboxComponent],
   templateUrl: './cart-drawer.component.html',
-  styleUrl: './cart-drawer.component.scss'
+  styleUrl: './cart-drawer.component.scss',
 })
 export class CartDrawerComponent {
   cart = inject(CartService);
@@ -21,6 +22,7 @@ export class CartDrawerComponent {
   checkoutError = signal('');
   lightboxImages = signal<ProductImage[]>([]);
   lightboxOpen = signal(false);
+
 
   openItemLightbox(item: CartItem) {
     this.lightboxImages.set(item.product.images);
@@ -40,11 +42,12 @@ export class CartDrawerComponent {
     if (this.cart.isEmpty()) this.closeConfirm();
   }
 
+  unitPrice(product: Product): number {
+    return effectivePrice(product);
+  }
+
   itemTotal(item: CartItem): number {
-    const price = item.product.discountPercentage
-      ? item.product.price * (1 - item.product.discountPercentage / 100)
-      : item.product.price;
-    return price * item.quantity;
+    return effectivePrice(item.product) * item.quantity;
   }
 
   navigateTo(url: string) {
@@ -59,17 +62,18 @@ export class CartDrawerComponent {
     try {
       const items = this.cart.items().map((item) => ({
         name: item.product.name,
-        price: item.product.discountPercentage
-          ? item.product.price * (1 - item.product.discountPercentage / 100)
-          : item.product.price,
+        price: effectivePrice(item.product),
         quantity: item.quantity,
       }));
 
-      const response = await fetch(`${environment.backendUrl}/create-checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
-      });
+      const response = await fetch(
+        `${environment.backendUrl}/create-checkout-session`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items }),
+        },
+      );
 
       if (!response.ok) {
         throw new Error('Failed to create checkout session');

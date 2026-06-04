@@ -183,10 +183,13 @@
 
 // ── Product info ───────────────────────────────────────────────
 .product-info {
-  display: grid;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-  height: 100%;
+  // Vertical rhythm comes from the .stack utility; give it room to breathe
+  // and open it up further once the layout stacks on smaller screens.
+  --stack-space: var(--spacing-md);
+
+  @media (max-width: 620px) {
+    --stack-space: var(--spacing-lg);
+  }
 
   &__meta {
     display: flex;
@@ -203,7 +206,7 @@
   }
 
   &__name {
-    font-size: clamp(28px, 4vw, 42px);
+    font-size: var(--text-h1);
     line-height: 1.15;
   }
 
@@ -243,35 +246,13 @@
   }
 
   &__description {
-    font-size: 15px;
+    font-size: var(--text-body);
     line-height: 1.7;
     color: var(--color-text-muted);
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
-    // padding: var(--spacing-lg) 0;
-    overflow: auto;
-    height: 8rem;
-  }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    align-items: center;
-
-    .card__tag {
-      cursor: default; // hoverable, not clickable
-      transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-
-      &:hover {
-        transform: translateY(-2px);
-        border-color: var(--color-peach);
-        box-shadow: 0 4px 14px rgba(244, 132, 95, 0.35);
-      }
-    }
+    padding: var(--spacing-md) 0;
+    height: auto;
   }
 
   &__actions {
@@ -295,47 +276,141 @@
   }
 }
 
-// ── Quantity ───────────────────────────────────────────────────
-.quantity {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-full);
-  overflow: hidden;
+// ── Quantity (Material-style outlined select) ──────────────────
+.mat-select {
+  position: relative;
+  display: inline-block;
+  min-width: 96px;
 
-  &__btn {
-    width: 40px;
-    height: 44px;
-    font-size: 20px;
-    color: var(--color-text-primary);
-    transition: var(--transition);
+  // Outlined field trigger
+  &__trigger {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    height: 48px;
+    padding: 0 var(--spacing-md);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    transition:
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
 
-    &:hover:not(:disabled) {
-      background: var(--color-peach-light);
-      color: var(--color-peach);
-    }
-
-    &:disabled {
-      color: var(--color-text-light);
-      cursor: not-allowed;
-    }
+  // Floating label — notches the outline by masking it with the page bg
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    transform: translateY(-50%);
+    padding: 0 4px;
+    background: var(--color-bg);
+    font-size: var(--font-xs);
+    line-height: 1;
+    color: var(--color-text-muted);
+    transition: color 0.15s ease;
   }
 
   &__value {
-    min-width: 40px;
-    text-align: center;
+    flex: 1;
+    text-align: left;
     font-size: 15px;
     font-weight: 500;
-    border-left: 1px solid var(--color-border);
-    border-right: 1px solid var(--color-border);
-    height: 44px;
+    color: var(--color-text-primary);
+  }
+
+  &__arrow {
+    color: var(--color-text-muted);
+    transition:
+      transform 0.2s ease,
+      color 0.15s ease;
+  }
+
+  // Focused / open — Material's 2px accent outline
+  &__trigger:focus-visible,
+  &--open &__trigger {
+    outline: none;
+    border-color: var(--color-peach);
+    box-shadow: inset 0 0 0 1px var(--color-peach); // emulate 2px outline
+  }
+
+  &--open &__label {
+    color: var(--color-peach);
+  }
+
+  &--open &__arrow {
+    transform: rotate(180deg);
+    color: var(--color-peach);
+  }
+
+  // Click-catcher so an outside click closes the panel
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+  }
+
+  // Elevated overlay panel
+  &__panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 41;
+    max-height: 256px;
+    overflow-y: auto;
+    padding: var(--spacing-xs) 0;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    box-shadow:
+      0 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0 6px 10px 0 rgba(0, 0, 0, 0.14),
+      0 1px 18px 0 rgba(0, 0, 0, 0.12);
+    transform-origin: top center;
+    animation: mat-select-open 0.16s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // slim Material-like scrollbar
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: var(--radius-full);
+    }
+  }
+
+  &__option {
     display: flex;
     align-items: center;
-    justify-content: center;
+    height: 40px;
+    padding: 0 var(--spacing-md);
+    font-size: 15px;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background 0.12s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    &--selected {
+      color: var(--color-peach);
+      font-weight: 600;
+      background: var(--color-peach-light);
+    }
+  }
+}
+
+@keyframes mat-select-open {
+  from {
+    opacity: 0;
+    transform: scaleY(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
   }
 }
 
@@ -345,7 +420,7 @@
   border-top: 1px solid var(--color-border);
 
   &__heading {
-    font-size: clamp(22px, 3vw, 30px);
+    font-size: var(--text-h2);
     margin-bottom: var(--spacing-xl);
     text-transform: capitalize;
   }
@@ -409,31 +484,6 @@
   &--filled {
     color: #f4a942;
   }
-}
-
-// ── Reuse card tag style ───────────────────────────────────────
-.card__tag {
-  font-size: var(--font-xs);
-  color: var(--color-text-muted);
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  padding: 2px 8px;
-  text-transform: lowercase;
-}
-
-// ── Low stock badge ────────────────────────────────────────────
-.badge--low-stock {
-  background: #fff4e0;
-  color: #b07d1a;
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
-  font-size: var(--font-xs);
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
 }
 
 // ── Cursor hint on gallery image ───────────────────────────────

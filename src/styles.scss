@@ -29,11 +29,22 @@
   --font-sans: "DM Sans", sans-serif;
   --font-serif: "DM Serif Display", serif;
 
-  // Font sizes — xs is the readable minimum
-  --font-xs: 14px;
+  // Font sizes — xs is the readable minimum (UI text / labels / badges)
+  --font-xs: 12px;
   --font-s: 16px;
   --font-m: 18px;
   --font-l: 24px;
+
+  // Fluid type scale — headings cascade h1 → h4, body for prose.
+  // clamp(min, preferred, max) so type scales smoothly with the viewport.
+  --text-h1: clamp(1.9rem, 1.35rem + 2.6vw, 2.75rem);
+  --text-h2: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  --text-h3: clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
+  --text-h4: clamp(1.1rem, 1.02rem + 0.4vw, 1.25rem);
+  --text-body: clamp(0.95rem, 0.92rem + 0.2vw, 1.0625rem);
+
+  // Vertical rhythm step used by the .stack utility
+  --stack-space: var(--spacing-md);
 
   // Spacing
   --spacing-xs: 4px;
@@ -93,6 +104,21 @@ h5 {
   font-family: var(--font-serif);
   line-height: 1.2;
   font-weight: 400;
+  text-wrap: balance; // tidier multi-line headings
+}
+
+// Default heading hierarchy — components may still override per context.
+h1 {
+  font-size: var(--text-h1);
+}
+h2 {
+  font-size: var(--text-h2);
+}
+h3 {
+  font-size: var(--text-h3);
+}
+h4 {
+  font-size: var(--text-h4);
 }
 
 a {
@@ -121,7 +147,39 @@ ul {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+// Stack — consistent vertical rhythm between direct children.
+// Space any container's children evenly; tune with a size modifier or by
+// setting --stack-space on the element (incl. inside media queries).
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-block: 0; // reset collapsing margins
+  }
+
+  > * + * {
+    margin-block-start: var(--stack-space, var(--spacing-md));
+  }
+
+  &--xs {
+    --stack-space: var(--spacing-xs);
+  }
+  &--sm {
+    --stack-space: var(--spacing-sm);
+  }
+  &--md {
+    --stack-space: var(--spacing-md);
+  }
+  &--lg {
+    --stack-space: var(--spacing-lg);
+  }
+  &--xl {
+    --stack-space: var(--spacing-xl);
+  }
 }
 
 .btn {
@@ -194,6 +252,10 @@ ul {
   &--out-of-stock {
     background: var(--color-border);
     color: var(--color-text-muted);
+  }
+  &--low-stock {
+    background: #fff4e0;
+    color: #b07d1a;
   }
 }
 

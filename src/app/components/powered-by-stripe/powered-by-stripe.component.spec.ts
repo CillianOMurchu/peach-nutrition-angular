@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PintrestGridComponent } from './pintrest-grid.component';
+import { PoweredByStripeComponent } from './powered-by-stripe.component';
 
-describe('PintrestGridComponent', () => {
-  let component: PintrestGridComponent;
-  let fixture: ComponentFixture<PintrestGridComponent>;
+describe('PoweredByStripeComponent', () => {
+  let component: PoweredByStripeComponent;
+  let fixture: ComponentFixture<PoweredByStripeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PintrestGridComponent]
+      imports: [PoweredByStripeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PintrestGridComponent);
+    fixture = TestBed.createComponent(PoweredByStripeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -7,19 +7,7 @@
   <div class="card__image-wrap">
     <!-- Badges top-left -->
     <div class="card__badges">
-      @if (product().discountPercentage) {
-        <span class="badge badge--discount">
-          -{{ product().discountPercentage }}%
-        </span>
-      }
-      @if (isLowStock()) {
-        <span class="badge badge--low-stock">
-          Only {{ product().stockQuantity }} left
-        </span>
-      }
-      @if (isOutOfStock()) {
-        <span class="badge badge--out-of-stock">Out of stock</span>
-      }
+      <app-product-badges [product]="product()" />
     </div>
 
     <!-- Brand badge top-right -->
@@ -48,11 +36,7 @@
     <h3 class="card__name">{{ product().name }}</h3>
 
     <!-- Tags -->
-    <div class="card__tags">
-      @for (tag of product().tags.slice(0, 3); track tag) {
-        <span class="card__tag">{{ tag }}</span>
-      }
-    </div>
+    <app-tag-list [tags]="product().tags.slice(0, 3)" />
 
     <!-- Price row -->
     <div class="card__footer">

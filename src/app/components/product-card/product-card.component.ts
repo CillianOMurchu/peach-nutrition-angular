@@ -3,11 +3,14 @@ import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CartService } from '@core/services/cart.service';
 import { Product } from '@core/models/product.model';
+import { discountedPrice } from '@core/utils/pricing';
+import { TagListComponent } from '@components/tag-list/tag-list.component';
+import { ProductBadgesComponent } from '@components/product-badges/product-badges.component';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, TagListComponent, ProductBadgesComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'
 })
@@ -15,19 +18,10 @@ export class ProductCardComponent {
   product = input.required<Product>();
   cart = inject(CartService);
 
-  discountedPrice = computed(() => {
-    const p = this.product();
-    if (!p.discountPercentage) return null;
-    return p.price * (1 - p.discountPercentage / 100);
-  });
+  discountedPrice = computed(() => discountedPrice(this.product()));
 
   stars = computed(() => {
     return Array.from({ length: 5 }, (_, i) => i < this.product().review.rating);
-  });
-
-  isLowStock = computed(() => {
-    const qty = this.product().stockQuantity;
-    return qty > 0 && qty <= 5;
   });
 
   isOutOfStock = computed(() => this.product().stockQuantity === 0);

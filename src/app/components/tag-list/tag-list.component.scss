@@ -1,0 +1,58 @@
+@use "sass:list";
+
+// Soft palette that complements the primary peach — coral, teal, gold, plum, sky.
+// Each entry: (gradient-start, gradient-end, accent, text).
+$tag-palette:
+  (#fff4ee, #fde0d3, #f4845f, #d9623d), (#e6f6f3, #cfeae5, #1fae9e, #16766b),
+  (#fdf2d8, #f8e6b6, #d99e22, #946312), (#f7e7f2, #eed4e6, #bd5fa3, #883f74),
+  (#e8f0fb, #d4e3f7, #5285dd, #335c99);
+$tag-count: list.length($tag-palette);
+
+:host {
+  display: block;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+
+  &__tag {
+    font-size: var(--font-xs);
+    font-weight: 500;
+    border: 1px solid;
+    border-radius: var(--radius-full);
+    padding: 2px 8px;
+    text-transform: lowercase;
+
+    // Cycle each chip through the palette with a soft always-on glow
+    @for $i from 1 through $tag-count {
+      $c: list.nth($tag-palette, $i);
+      &:nth-child(#{$tag-count}n + #{$i}) {
+        color: list.nth($c, 4);
+        background: linear-gradient(135deg, list.nth($c, 1), list.nth($c, 2));
+        border-color: rgba(list.nth($c, 3), 0.4);
+        box-shadow: 0 1px 8px rgba(list.nth($c, 3), 0.22);
+      }
+    }
+  }
+
+  // Hoverable, not clickable — soft raise + stronger per-colour glow
+  &--hoverable &__tag {
+    cursor: default;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      border-color 0.2s ease;
+
+    @for $i from 1 through $tag-count {
+      $c: list.nth($tag-palette, $i);
+      &:nth-child(#{$tag-count}n + #{$i}):hover {
+        transform: translateY(-2px);
+        border-color: rgba(list.nth($c, 3), 0.9);
+        box-shadow: 0 6px 18px rgba(list.nth($c, 3), 0.42);
+      }
+    }
+  }
+}

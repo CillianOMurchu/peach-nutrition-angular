@@ -1,0 +1,45 @@
+.powered-by-stripe {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+
+  // Size variants
+  &--sm {
+    font-size: 10px;
+
+    .powered-by-stripe__logo svg {
+      width: 26px;
+      height: 12px;
+    }
+  }
+
+  &--md {
+    font-size: 12px;
+    font-weight: 400;
+
+    .powered-by-stripe__logo svg {
+      width: 33px;
+      height: 15px;
+    }
+  }
+
+  &--lg {
+    font-size: 14px;
+
+    .powered-by-stripe__logo svg {
+      width: 40px;
+      height: 18px;
+    }
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      fill: currentColor;
+      vertical-align: middle;
+    }
+  }
+}

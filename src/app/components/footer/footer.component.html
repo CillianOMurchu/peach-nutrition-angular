@@ -2,11 +2,61 @@
   <div class="container">
     <!-- Top row -->
     <div class="footer__top">
+      <div class="footer__links">
+        <!-- Quick links -->
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <h3 class="footer__nav-heading">Shop</h3>
+          <ul>
+            <li><a routerLink="/shop">All Products</a></li>
+            <li>
+              <a routerLink="/shop" [queryParams]="{ category: 'protein-bar' }"
+                >Protein Bars</a
+              >
+            </li>
+            <li>
+              <a routerLink="/shop" [queryParams]="{ category: 'energy-drink' }"
+                >Energy Drinks</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/shop"
+                [queryParams]="{ category: 'protein-powder' }"
+                >Supplements</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Policies -->
+        <nav class="footer__nav" aria-label="Policy links">
+          <h3 class="footer__nav-heading">Information</h3>
+          <ul>
+            <li><a routerLink="/privacy">Privacy Policy</a></li>
+            <li><a routerLink="/returns">Returns &amp; Refunds</a></li>
+            <li><a routerLink="/shipping">Shipping Policy</a></li>
+            <li><a routerLink="/terms">Terms &amp; Conditions</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Payment methods -->
+      <div class="footer__payments-col">
+        <h3 class="footer__nav-heading"></h3>
+        <div class="footer__payment-icons">
+          @for (method of paymentMethods; track method.alt) {
+            <img
+              [src]="method.src"
+              [alt]="method.alt"
+              class="footer__payment-icon"
+              loading="lazy"
+            />
+          }
+        </div>
+      </div>
       <!-- Brand -->
       <div class="footer__brand">
-        <span
-          class="footer__logo"
-        >
+        <span class="footer__logo">
           <img
             src="images/logos/logo-peach-nutrition.png"
             alt="{{ co.name }} logo"
@@ -24,55 +74,6 @@
           ><br />
         </address>
       </div>
-
-      <!-- Quick links -->
-      <nav class="footer__nav" aria-label="Footer navigation">
-        <h3 class="footer__nav-heading">Shop</h3>
-        <ul>
-          <li><a routerLink="/shop">All Products</a></li>
-          <li>
-            <a routerLink="/shop" [queryParams]="{ category: 'protein-bar' }"
-              >Protein Bars</a
-            >
-          </li>
-          <li>
-            <a routerLink="/shop" [queryParams]="{ category: 'energy-drink' }"
-              >Energy Drinks</a
-            >
-          </li>
-          <li>
-            <a routerLink="/shop" [queryParams]="{ category: 'protein-powder' }"
-              >Supplements</a
-            >
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Policies -->
-      <nav class="footer__nav" aria-label="Policy links">
-        <h3 class="footer__nav-heading">Information</h3>
-        <ul>
-          <li><a routerLink="/privacy">Privacy Policy</a></li>
-          <li><a routerLink="/returns">Returns &amp; Refunds</a></li>
-          <li><a routerLink="/shipping">Shipping Policy</a></li>
-          <li><a routerLink="/terms">Terms &amp; Conditions</a></li>
-        </ul>
-      </nav>
-
-      <!-- Payment methods -->
-      <div class="footer__payments-col">
-        <h3 class="footer__nav-heading"></h3>
-        <div class="footer__payment-icons">
-          @for (method of paymentMethods; track method.alt) {
-            <img
-              [src]="method.src"
-              [alt]="method.alt"
-              class="footer__payment-icon"
-              loading="lazy"
-            />
-          }
-        </div>
-      </div>
     </div>
 
     <!-- Divider -->
@@ -80,17 +81,12 @@
 
     <!-- Bottom row -->
     <div class="footer__bottom">
-      <p class="footer__legal">
-        &copy; {{ year }} {{ co.name }}
-      </p>
-      <p>All rights reserved.</p>
+      <div class="footer__legal">
+        <div>
+          <span> &copy; {{ year }} {{ co.name }} </span>
+        </div>
 
-      <div class="footer__badges">
-        <img
-          src="images/secure-payment.png"
-          alt="Secure payment"
-          loading="lazy"
-        />
+        <span>All rights reserved.</span>
       </div>
     </div>
   </div>

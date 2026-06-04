@@ -1,5 +1,6 @@
 import { computed, effect, Injectable, signal } from '@angular/core';
 import { Product } from '@core/models/product.model';
+import { effectivePrice } from '@core/utils/pricing';
 
 export interface CartItem {
   product: Product;
@@ -22,12 +23,10 @@ export class CartService {
   );
 
   readonly subtotal = computed(() =>
-    this._items().reduce((sum, i) => {
-      const price = i.product.discountPercentage
-        ? i.product.price * (1 - i.product.discountPercentage / 100)
-        : i.product.price;
-      return sum + price * i.quantity;
-    }, 0),
+    this._items().reduce(
+      (sum, i) => sum + effectivePrice(i.product) * i.quantity,
+      0,
+    ),
   );
 
   readonly isEmpty = computed(() => this._items().length === 0);

@@ -5,12 +5,17 @@
 
 <!-- Checkout processing overlay -->
 @if (checkoutLoading()) {
-  <div class="checkout-overlay" role="alertdialog" aria-busy="true" aria-label="Processing payment">
+  <div
+    class="checkout-overlay"
+    role="alertdialog"
+    aria-busy="true"
+    aria-label="Processing payment"
+  >
     <div class="checkout-loader">
       <div class="pos">
         <div class="pos__screen"></div>
         <div class="pos__keys">
-          @for (key of [1,2,3,4,5,6,7,8,9]; track key) {
+          @for (key of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track key) {
             <span></span>
           }
         </div>
@@ -92,12 +97,7 @@
                   <span class="cart-item__price--original">
                     €{{ item.product.price.toFixed(2) }}
                   </span>
-                  €{{
-                    (
-                      item.product.price *
-                      (1 - item.product.discountPercentage / 100)
-                    ).toFixed(2)
-                  }}
+                  €{{ unitPrice(item.product).toFixed(2) }}
                 } @else {
                   €{{ item.product.price.toFixed(2) }}
                 }
@@ -184,16 +184,18 @@
           }
 
           <button
-            class="btn btn--primary drawer__checkout"
+            class="stripe-pay"
             (click)="checkout()"
             [disabled]="checkoutLoading()"
           >
             @if (checkoutLoading()) {
+              <span class="stripe-pay__spinner" aria-hidden="true"></span>
               Processing…
             } @else {
               <svg
+                class="stripe-pay__lock"
                 width="14"
-                height="16"
+                height="14"
                 viewBox="0 0 14 16"
                 fill="none"
                 stroke="currentColor"
@@ -205,18 +207,7 @@
                 <rect x="2" y="7" width="10" height="8" rx="1.5" />
                 <path d="M4 7V5a3 3 0 0 1 6 0v2" />
               </svg>
-              <span class="drawer__checkout-content">
-                <span class="drawer__checkout-main">Pay Securely</span>
-                <span class="drawer__checkout-sub">
-                 
-                  <img
-                    src="images/logos/payment/stripe.svg"
-                    alt="Stripe"
-                    height="50"
-                    class="drawer__checkout-stripe"
-                  />
-                </span>
-              </span>
+              Pay €{{ cart.subtotal().toFixed(2) }}
             }
           </button>
         </div>
@@ -229,21 +220,6 @@
             >€{{ cart.subtotal().toFixed(2) }}</span
           >
         </div>
-        <div class="drawer__shipping">
-          <img
-            src="images/secure-payment.png"
-            alt=""
-            aria-hidden="true"
-            height="14"
-          />
-          <p>Secure checkout powered by Stripe</p>
-          <div class="drawer__payment-logos">
-            <img src="images/logos/payment/visa.svg" alt="Visa" />
-            <img src="images/logos/payment/mastercard.svg" alt="Mastercard" />
-            <img src="images/logos/payment/apple.svg" alt="Apple Pay" />
-            <img src="images/logos/payment/google.svg" alt="Google Pay" />
-          </div>
-        </div>
 
         <button
           class="btn btn--primary drawer__checkout"
@@ -251,6 +227,42 @@
         >
           Checkout
         </button>
+        <div class="drawer__shipping">
+          <div class="drawer__shipping--secure-payment">
+            <img
+              src="images/secure-payment.png"
+              alt=""
+              aria-hidden="true"
+              height="14"
+            />
+            <div class="drawer__payment-logos">
+              <img
+                height="150"
+                width="150"
+                src="images/logos/payment/visa.svg"
+                alt="Visa"
+              />
+              <img
+                height="150"
+                width="150"
+                src="images/logos/payment/mastercard.svg"
+                alt="Mastercard"
+              />
+              <img
+                height="150"
+                width="150"
+                src="images/logos/payment/apple.svg"
+                alt="Apple Pay"
+              />
+              <img
+                height="150"
+                width="150"
+                src="images/logos/payment/google.svg"
+                alt="Google Pay"
+              />
+            </div>
+          </div>
+        </div>
         <button class="btn btn--ghost drawer__continue" (click)="cart.close()">
           Continue Shopping
         </button>
