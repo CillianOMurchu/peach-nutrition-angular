@@ -87,6 +87,10 @@ export class ProductService {
     return result;
   });
 
+  readonly mosaicProducts = computed(() => {
+    return this._allProducts().sort(() => 0.5 - Math.random()).slice(0, 12);
+  });
+
   readonly featuredProducts = computed(() =>
     this._allProducts().filter((p) => p.featured),
   );
@@ -94,13 +98,13 @@ export class ProductService {
   readonly totalResults = computed(() => this.filteredProducts().length);
 
   readonly hasActiveFilters = computed(() => {
-    const { search, brands, categories, inStockOnly, sortBy } = this._filters();
-    return !!(
-      search ||
-      brands.length ||
-      categories.length ||
-      inStockOnly ||
-      sortBy !== 'default'
+    const f = this._filters();
+    return (
+      f.search !== DEFAULT_FILTERS.search ||
+      f.brands.length > 0 ||
+      f.categories.length > 0 ||
+      f.inStockOnly !== DEFAULT_FILTERS.inStockOnly ||
+      f.sortBy !== DEFAULT_FILTERS.sortBy
     );
   });
 
@@ -158,6 +162,7 @@ export class ProductService {
   }
 
   clearFilters(): void {
+    if (!this.hasActiveFilters()) return;
     this._filters.set({ ...DEFAULT_FILTERS });
   }
 }

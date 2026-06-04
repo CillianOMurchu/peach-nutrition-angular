@@ -41,7 +41,7 @@
   </section>
 
   <!-- ── Featured products ── -->
-  <section class="featured">
+  <!-- <section class="featured">
     <div class="container">
       <div class="featured__header" #animateIn>
         <h2>Featured Products</h2>
@@ -56,7 +56,7 @@
               style="height: 340px; border-radius: var(--radius-lg)"
             ></div>
           }
-        </div>
+        </div> 
       } @else {
         <div class="featured__grid">
           @for (product of featured(); track product.id; let i = $index) {
@@ -73,13 +73,13 @@
         </div>
       }
     </div>
-  </section>
+  </section>-->
 
   <!-- ── Product wall ── -->
   @if (!productService.loading()) {
     <section class="wall" #animateIn>
       <div class="container">
-        <app-product-mosaic [products]="productService.filteredProducts()" />
+        <app-product-mosaic [products]="mosaic()" />
       </div>
     </section>
   }

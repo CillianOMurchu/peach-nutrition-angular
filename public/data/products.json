@@ -1,6 +1,7 @@
 [
   {
     "id": "barebells-banana-dream",
+    "numericId": 1,
     "name": "Banana Dream",
     "brand": "barebells",
     "category": "protein-bar",
@@ -24,6 +25,7 @@
   },
   {
     "id": "barebells-salty-peanut-caramel",
+    "numericId": 2,
     "name": "Salty Peanut Caramel",
     "brand": "barebells",
     "category": "protein-bar",
@@ -47,6 +49,7 @@
   },
   {
     "id": "barebells-salty-peanut",
+    "numericId": 3,
     "name": "Salty Peanut",
     "brand": "barebells",
     "category": "protein-bar",
@@ -70,6 +73,7 @@
   },
   {
     "id": "barebells-white-salty-peanut",
+    "numericId": 4,
     "name": "White Salty Peanut",
     "brand": "barebells",
     "category": "protein-bar",
@@ -93,6 +97,7 @@
   },
   {
     "id": "barebells-cookies-caramel",
+    "numericId": 5,
     "name": "Cookies & Caramel",
     "brand": "barebells",
     "category": "protein-bar",
@@ -112,6 +117,7 @@
   },
   {
     "id": "barebells-lemon-cheesecake",
+    "numericId": 6,
     "name": "Lemon Cheesecake",
     "brand": "barebells",
     "category": "protein-bar",
@@ -131,6 +137,7 @@
   },
   {
     "id": "barebells-coco-choco",
+    "numericId": 7,
     "name": "Coco Choco",
     "brand": "barebells",
     "category": "protein-bar",
@@ -150,6 +157,7 @@
   },
   {
     "id": "barebells-cookies-cream",
+    "numericId": 8,
     "name": "Cookies & Cream",
     "brand": "barebells",
     "category": "protein-bar",
@@ -173,6 +181,7 @@
   },
   {
     "id": "barebells-berry-licorice",
+    "numericId": 9,
     "name": "Berry Licorice",
     "brand": "barebells",
     "category": "protein-bar",
@@ -196,6 +205,7 @@
   },
   {
     "id": "barebells-caramel-choco",
+    "numericId": 10,
     "name": "Caramel Choco",
     "brand": "barebells",
     "category": "protein-bar",
@@ -219,6 +229,7 @@
   },
   {
     "id": "nocco-juicy-melba",
+    "numericId": 11,
     "name": "Juicy Melba",
     "brand": "nocco",
     "category": "energy-drink",
@@ -246,6 +257,7 @@
   },
   {
     "id": "nocco-grand-sour",
+    "numericId": 12,
     "name": "Grand Sour",
     "brand": "nocco",
     "category": "energy-drink",
@@ -265,6 +277,7 @@
   },
   {
     "id": "nocco-miami-strawberry",
+    "numericId": 13,
     "name": "Miami Strawberry",
     "brand": "nocco",
     "category": "energy-drink",
@@ -284,6 +297,7 @@
   },
   {
     "id": "iogenix-chokokrac",
+    "numericId": 14,
     "name": "Chokokrac",
     "brand": "iogenix",
     "category": "protein-powder",
@@ -303,6 +317,7 @@
   },
   {
     "id": "iogenix-black-cookies-cheesecake",
+    "numericId": 15,
     "name": "Black Cookies Cheesecake",
     "brand": "iogenix",
     "category": "protein-powder",
@@ -322,6 +337,7 @@
   },
   {
     "id": "iogenix-choco-milk",
+    "numericId": 16,
     "name": "Choco Milk Crunch",
     "brand": "iogenix",
     "category": "protein-powder",
@@ -341,6 +357,7 @@
   },
   {
     "id": "iogenix-cookie-dough",
+    "numericId": 17,
     "name": "Cookie Dough",
     "brand": "iogenix",
     "category": "protein-powder",
@@ -360,6 +377,7 @@
   },
   {
     "id": "iogenix-jumanjix",
+    "numericId": 18,
     "name": "Choco Jumanjix",
     "brand": "iogenix",
     "category": "protein-powder",
@@ -379,6 +397,7 @@
   },
   {
     "id": "iogenix-milk-choc-boom",
+    "numericId": 19,
     "name": "Milk Choc Boom",
     "brand": "iogenix",
     "category": "protein-powder",

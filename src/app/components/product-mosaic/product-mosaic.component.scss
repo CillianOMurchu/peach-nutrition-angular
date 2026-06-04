@@ -1,6 +1,6 @@
 .product-mosaic {
   columns: 3;
-  column-gap: var(--spacing-sm);
+  column-gap: 0;
 
   @media (max-width: 860px) {
     columns: 2;
@@ -12,7 +12,7 @@
 
   &__item {
     break-inside: avoid;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0;
   }
 
   &__link {
@@ -31,25 +31,23 @@
   &__image-wrap {
     overflow: hidden;
     background: var(--color-peach-light);
-    border-radius: var(--radius-sm);
 
     img {
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: auto;
       mix-blend-mode: multiply;
-      padding: var(--spacing-sm);
       transition: transform 0.4s ease;
     }
   }
 
   &__caption {
-    padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-md);
+    padding: var(--spacing-xs);
   }
 
   &__name {
     display: block;
-    font-size: 13px;
+    font-size: var(--font-xs);
     font-weight: 500;
     color: var(--color-text-primary);
     line-height: 1.3;
@@ -61,7 +59,7 @@
     align-items: center;
     gap: var(--spacing-xs);
     margin-top: 4px;
-    font-size: 11px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;

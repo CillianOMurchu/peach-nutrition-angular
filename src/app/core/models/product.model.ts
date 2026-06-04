@@ -13,6 +13,7 @@ export interface ProductReview {
 
 export interface Product {
   id: string;
+  numericId: number;
   name: string;
   brand: Brand;
   category: Category;

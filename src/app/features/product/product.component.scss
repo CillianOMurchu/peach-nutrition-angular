@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
-  font-size: 13px;
+  font-size: var(--font-xs);
   color: var(--color-text-muted);
   margin-bottom: var(--spacing-xl);
 
@@ -195,7 +195,7 @@
   }
 
   &__category {
-    font-size: 12px;
+    font-size: var(--font-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
@@ -214,7 +214,7 @@
   }
 
   &__review-count {
-    font-size: 13px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     margin-left: var(--spacing-sm);
   }
@@ -257,6 +257,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
+    align-items: center;
+
+    .card__tag {
+      cursor: default; // hoverable, not clickable
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        border-color: var(--color-peach);
+        box-shadow: 0 4px 14px rgba(244, 132, 95, 0.35);
+      }
+    }
   }
 
   &__actions {
@@ -274,7 +289,7 @@
   }
 
   &__stock-warning {
-    font-size: 13px;
+    font-size: var(--font-xs);
     color: #b07d1a;
     font-weight: 500;
   }
@@ -375,21 +390,21 @@
   }
 
   &__name {
-    font-size: 14px;
+    font-size: var(--font-xs);
     font-weight: 500;
     color: var(--color-text-primary);
     line-height: 1.3;
   }
 
   &__price {
-    font-size: 14px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
   }
 }
 
 // ── Stars ──────────────────────────────────────────────────────
 .star {
-  font-size: 16px;
+  font-size: var(--font-s);
   color: var(--color-border);
   &--filled {
     color: #f4a942;
@@ -398,7 +413,7 @@
 
 // ── Reuse card tag style ───────────────────────────────────────
 .card__tag {
-  font-size: 11px;
+  font-size: var(--font-xs);
   color: var(--color-text-muted);
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -415,7 +430,7 @@
   align-items: center;
   padding: 3px 10px;
   border-radius: var(--radius-full);
-  font-size: 11px;
+  font-size: var(--font-xs);
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;

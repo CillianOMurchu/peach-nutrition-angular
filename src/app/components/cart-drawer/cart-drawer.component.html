@@ -3,6 +3,31 @@
   <div class="backdrop" (click)="cart.close()"></div>
 }
 
+<!-- Checkout processing overlay -->
+@if (checkoutLoading()) {
+  <div class="checkout-overlay" role="alertdialog" aria-busy="true" aria-label="Processing payment">
+    <div class="checkout-loader">
+      <div class="pos">
+        <div class="pos__screen"></div>
+        <div class="pos__keys">
+          @for (key of [1,2,3,4,5,6,7,8,9]; track key) {
+            <span></span>
+          }
+        </div>
+        <div class="pos__slot"></div>
+        <div class="swipe">
+          <div class="swipe__card">
+            <span class="swipe__chip"></span>
+            <span class="swipe__stripe"></span>
+          </div>
+          <span class="swipe__hand">🤚</span>
+        </div>
+      </div>
+      <p class="checkout-loader__text">Processing payment…</p>
+    </div>
+  </div>
+}
+
 <!-- Drawer -->
 <aside class="drawer" [class.drawer--open]="cart.isOpen()">
   <!-- Header -->
@@ -166,15 +191,30 @@
             @if (checkoutLoading()) {
               Processing…
             } @else {
-              <svg width="14" height="16" viewBox="0 0 14 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="7" width="10" height="8" rx="1.5"/>
-                <path d="M4 7V5a3 3 0 0 1 6 0v2"/>
+              <svg
+                width="14"
+                height="16"
+                viewBox="0 0 14 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="2" y="7" width="10" height="8" rx="1.5" />
+                <path d="M4 7V5a3 3 0 0 1 6 0v2" />
               </svg>
               <span class="drawer__checkout-content">
                 <span class="drawer__checkout-main">Pay Securely</span>
                 <span class="drawer__checkout-sub">
-                  powered by
-                  <img src="images/logos/payment/stripe.svg" alt="Stripe" class="drawer__checkout-stripe" />
+                 
+                  <img
+                    src="images/logos/payment/stripe.svg"
+                    alt="Stripe"
+                    height="50"
+                    class="drawer__checkout-stripe"
+                  />
                 </span>
               </span>
             }
@@ -209,7 +249,7 @@
           class="btn btn--primary drawer__checkout"
           (click)="openConfirm()"
         >
-          Checkout — €{{ cart.subtotal().toFixed(2) }}
+          Checkout
         </button>
         <button class="btn btn--ghost drawer__continue" (click)="cart.close()">
           Continue Shopping

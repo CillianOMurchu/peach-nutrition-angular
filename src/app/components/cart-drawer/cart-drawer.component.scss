@@ -16,6 +16,168 @@
   }
 }
 
+// ── Checkout processing overlay ────────────────────────────────
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400; // above the drawer (200) and its backdrop (150)
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: progress;
+  animation: fade-in 0.2s ease;
+}
+
+.checkout-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+
+  &__text {
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    animation: pulse-text 1.4s ease-in-out infinite;
+  }
+}
+
+// The POS terminal
+.pos {
+  position: relative;
+  width: 132px;
+  height: 184px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #4b5563, #1f2937);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 16px 14px;
+
+  &__screen {
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #bfe3c6, #8fd3a6);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  &__keys {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+
+    span {
+      height: 16px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.18);
+    }
+  }
+
+  // The swipe slot along the top edge
+  &__slot {
+    position: absolute;
+    top: -5px;
+    left: 12px;
+    right: 12px;
+    height: 6px;
+    border-radius: 3px;
+    background: #111827;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+  }
+}
+
+// The hand + card that passes through the slot
+.swipe {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  animation: swipe-card 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+
+  &__card {
+    position: relative;
+    width: 86px;
+    height: 54px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--color-peach), var(--color-peach-dark));
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+  }
+
+  &__chip {
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    width: 14px;
+    height: 11px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, #f4d68a, #d4a843);
+  }
+
+  &__stripe {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  &__hand {
+    margin-top: -6px;
+    font-size: 34px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  }
+}
+
+// Card travels left → right through the slot, then resets
+@keyframes swipe-card {
+  0% {
+    transform: translateX(-122px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-text {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swipe {
+    animation: none;
+  }
+  .checkout-loader__text {
+    animation: none;
+  }
+}
+
 // ── Drawer ─────────────────────────────────────────────────────
 .drawer {
   position: fixed;
@@ -64,7 +226,7 @@
     background: var(--color-peach);
     color: white;
     border-radius: 50%;
-    font-size: 12px;
+    font-size: var(--font-xs);
     font-weight: 600;
     font-family: var(--font-sans);
   }
@@ -76,7 +238,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     transition: var(--transition);
 
@@ -155,7 +317,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    font-size: 12px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
 
     img {
@@ -192,6 +354,9 @@
     padding: 14px;
     font-size: 15px;
     gap: var(--spacing-sm);
+    display: grid;
+    justify-content: center;
+    justify-items: center;
   }
 
   &__checkout-content {
@@ -205,27 +370,27 @@
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.01em;
+    text-align: center;
+    width: 100%;
   }
 
   &__checkout-sub {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 10px;
+    font-size: var(--font-xs);
     font-weight: 400;
     opacity: 0.75;
     letter-spacing: 0.04em;
   }
 
   &__checkout-stripe {
-    height: 14px;
-    width: auto;
-    filter: brightness(0) invert(1);
+    width: 200px;
   }
 
   &__continue {
     width: 100%;
-    font-size: 14px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
   }
 
@@ -234,7 +399,7 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-size: 13px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     margin-bottom: var(--spacing-sm);
     transition: var(--transition);
@@ -252,7 +417,7 @@
 
   &__confirm-title {
     font-family: var(--font-serif);
-    font-size: 18px;
+    font-size: var(--font-m);
     font-weight: 400;
   }
 
@@ -294,14 +459,14 @@
     background: var(--color-peach-light);
     color: var(--color-peach);
     border-radius: var(--radius-full);
-    font-size: 11px;
+    font-size: var(--font-xs);
     font-weight: 700;
     flex-shrink: 0;
     letter-spacing: 0.02em;
   }
 
   &__confirm-price {
-    font-size: 13px;
+    font-size: var(--font-xs);
     font-weight: 600;
     color: var(--color-text-primary);
     flex-shrink: 0;
@@ -318,7 +483,7 @@
     border-radius: var(--radius-md);
 
     span:first-child {
-      font-size: 11px;
+      font-size: var(--font-xs);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -330,12 +495,11 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--color-text-primary);
-      font-family: var(--font-serif);
     }
   }
 
   &__confirm-msg {
-    font-size: 13px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     line-height: 1.6;
     padding: var(--spacing-md);
@@ -345,7 +509,7 @@
   }
 
   &__confirm-error {
-    font-size: 13px;
+    font-size: var(--font-xs);
     color: var(--color-discount);
     padding: var(--spacing-sm) var(--spacing-md);
     background: #fdf2f2;
@@ -381,7 +545,7 @@
   }
 
   &__success-msg {
-    font-size: 14px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     line-height: 1.6;
   }
@@ -432,7 +596,7 @@
   }
 
   &__name {
-    font-size: 14px;
+    font-size: var(--font-xs);
     font-weight: 500;
     line-height: 1.3;
     color: var(--color-text-primary);
@@ -442,12 +606,12 @@
   }
 
   &__price {
-    font-size: 14px;
+    font-size: var(--font-xs);
     font-weight: 600;
     color: var(--color-text-primary);
 
     &--original {
-      font-size: 12px;
+      font-size: var(--font-xs);
       font-weight: 400;
       color: var(--color-text-light);
       text-decoration: line-through;
@@ -473,7 +637,7 @@
     button {
       width: 28px;
       height: 28px;
-      font-size: 16px;
+      font-size: var(--font-s);
       color: var(--color-text-primary);
       display: flex;
       align-items: center;
@@ -494,7 +658,7 @@
     span {
       min-width: 28px;
       text-align: center;
-      font-size: 13px;
+      font-size: var(--font-xs);
       font-weight: 500;
       border-left: 1px solid var(--color-border);
       border-right: 1px solid var(--color-border);
@@ -506,7 +670,7 @@
   }
 
   &__remove {
-    font-size: 12px;
+    font-size: var(--font-xs);
     color: var(--color-text-muted);
     transition: var(--transition);
     text-decoration: underline;

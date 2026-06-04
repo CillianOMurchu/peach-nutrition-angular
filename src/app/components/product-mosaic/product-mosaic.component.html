@@ -1,21 +1,21 @@
 <div class="product-mosaic">
-  @for (product of products(); track product.id; let i = $index) {
+  @for (product of products(); track product.id) {
     <div class="product-mosaic__item">
       <a [routerLink]="['/product', product.id]" class="product-mosaic__link">
-        <div class="product-mosaic__image-wrap" [style.aspect-ratio]="aspectRatio(i)">
+        <div class="product-mosaic__image-wrap">
           <img
             [src]="product.images[0].src"
             [alt]="product.images[0].alt"
             loading="lazy"
           />
         </div>
-        <div class="product-mosaic__caption">
+        <!-- <div class="product-mosaic__caption">
           <span class="product-mosaic__name">{{ product.name }}</span>
           <span class="product-mosaic__meta">
             <span class="badge badge--{{ product.brand }}">{{ product.brand }}</span>
             {{ product.category }}
           </span>
-        </div>
+        </div> -->
       </a>
     </div>
   }

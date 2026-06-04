@@ -1,20 +1,27 @@
 <footer class="footer">
   <div class="container">
-
     <!-- Top row -->
     <div class="footer__top">
-
       <!-- Brand -->
       <div class="footer__brand">
-        <span class="footer__logo">Peach Nutrition</span>
-        <p class="footer__tagline">Premium sports nutrition, delivered.</p>
+        <span
+          class="footer__logo"
+        >
+          <img
+            src="images/logos/logo-peach-nutrition.png"
+            alt="{{ co.name }} logo"
+            class="footer__logo-image"
+            loading="lazy"
+          />
+        </span>
+        <p class="footer__tagline"></p>
         <address class="footer__address">
           {{ co.name }}<br />
           {{ co.address.street }}<br />
           {{ co.address.postcode }} {{ co.address.city }}<br />
           {{ co.address.country }}<br />
-          <a [href]="'mailto:' + co.email.general">{{ co.email.general }}</a><br />
-          <a [href]="co.phone.href">{{ co.phone.display }}</a>
+          <a [href]="'mailto:' + co.email.general">{{ co.email.general }}</a
+          ><br />
         </address>
       </div>
 
@@ -23,9 +30,21 @@
         <h3 class="footer__nav-heading">Shop</h3>
         <ul>
           <li><a routerLink="/shop">All Products</a></li>
-          <li><a routerLink="/shop" [queryParams]="{ category: 'protein-bar' }">Protein Bars</a></li>
-          <li><a routerLink="/shop" [queryParams]="{ category: 'energy-drink' }">Energy Drinks</a></li>
-          <li><a routerLink="/shop" [queryParams]="{ category: 'protein-powder' }">Supplements</a></li>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'protein-bar' }"
+              >Protein Bars</a
+            >
+          </li>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'energy-drink' }"
+              >Energy Drinks</a
+            >
+          </li>
+          <li>
+            <a routerLink="/shop" [queryParams]="{ category: 'protein-powder' }"
+              >Supplements</a
+            >
+          </li>
         </ul>
       </nav>
 
@@ -42,7 +61,7 @@
 
       <!-- Payment methods -->
       <div class="footer__payments-col">
-        <h3 class="footer__nav-heading">Accepted Payments</h3>
+        <h3 class="footer__nav-heading"></h3>
         <div class="footer__payment-icons">
           @for (method of paymentMethods; track method.alt) {
             <img
@@ -54,7 +73,6 @@
           }
         </div>
       </div>
-
     </div>
 
     <!-- Divider -->
@@ -62,21 +80,18 @@
 
     <!-- Bottom row -->
     <div class="footer__bottom">
-
       <p class="footer__legal">
-        &copy; {{ year }} {{ co.name }}. Reg. No. {{ co.registrationNo }}.
-        All rights reserved.
+        &copy; {{ year }} {{ co.name }}
       </p>
+      <p>All rights reserved.</p>
 
       <div class="footer__badges">
-        <img src="images/secure-payment.png" alt="Secure payment" loading="lazy" />
-        <img src="images/logos/payment/visa.svg" alt="Visa" loading="lazy" />
-        <img src="images/logos/payment/mastercard.svg" alt="Mastercard" loading="lazy" />
-        <img src="images/logos/payment/apple.svg" alt="Apple Pay" loading="lazy" />
-        <img src="images/logos/payment/google.svg" alt="Google Pay" loading="lazy" />
+        <img
+          src="images/secure-payment.png"
+          alt="Secure payment"
+          loading="lazy"
+        />
       </div>
-
     </div>
-
   </div>
 </footer>
